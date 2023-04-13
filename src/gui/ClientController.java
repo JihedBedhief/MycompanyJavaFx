@@ -61,7 +61,7 @@ public class ClientController implements Initializable {
     private TableColumn<Client, String> Ci;
     @FXML
     private TableColumn<Client, String> D;
-  
+
     @FXML
     private TextField name;
     @FXML
@@ -76,7 +76,7 @@ public class ClientController implements Initializable {
     private TextField code;
     @FXML
     private TextField cin;
-  
+
     @FXML
     private ComboBox<String> comm;
     @FXML
@@ -88,7 +88,7 @@ public class ClientController implements Initializable {
     private Connection cnx;
 
     ServiceClient client = new ServiceClient();
-          ObservableList<Client> Chercheclient;
+    ObservableList<Client> Chercheclient;
 
     /**
      * Initializes the controller class.
@@ -112,11 +112,9 @@ public class ClientController implements Initializable {
 
         }
     }
-       
 
     public void table2() {
 
-//        r.setCellValueFactory( new PropertyValueFactory<>("Role"));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         div.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Client, String>, ObservableValue<String>>() {
@@ -143,184 +141,155 @@ public class ClientController implements Initializable {
         // TODO
         idx.setVisible(false);
 
-        
         comm.setItems(client.RecupCombo());
-        
-        table2();
-                                ChercheFichier();
 
-             tab.setOnMouseClicked((MouseEvent event) -> {
-    if (event.getClickCount() > 0) {
-        onEdit();
-        
-    }
-});
+        table2();
+        ChercheFichier();
+
+        tab.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 0) {
+                onEdit();
+
+            }
+        });
     }
 
     @FXML
     private void AddDivision(ActionEvent event) {
-               if (email.getText().isEmpty()|| name.getText().isEmpty() || telephone.getText().isEmpty() || ville.getText().isEmpty() || code.getText().isEmpty() || comm.getValue().isEmpty()|| cin.getText().isEmpty())
-         {
-             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Erreur");
-            
-            alert.setContentText("Please fill all input");
-            Optional<ButtonType> result = alert.showAndWait();}
-           
-           else if(!client.VerifEmail(email.getText())){
+        if (email.getText().isEmpty() || name.getText().isEmpty() || telephone.getText().isEmpty() || ville.getText().isEmpty() || code.getText().isEmpty() || comm.getValue().isEmpty() || cin.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Erreur");
-            
+
+            alert.setContentText("Please fill all input");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else if (!client.VerifEmail(email.getText())) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Erreur");
+
             alert.setContentText("invalid Email format");
             Optional<ButtonType> result = alert.showAndWait();
-           }
-           else if(cin.getText().length()!=8){
-                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        } else if (cin.getText().length() != 8) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Erreur");
-            
+
             alert.setContentText("invalid cin form");
             Optional<ButtonType> result = alert.showAndWait();
-           
-           }
-             else if(telephone.getText().length()!=8){
-                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        } else if (telephone.getText().length() != 8) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Erreur");
-            
+
             alert.setContentText("invalid phone number");
             Optional<ButtonType> result = alert.showAndWait();
-             }
-        
-            
-           
-           
-         else {
-           
-           EnregistrerVersBase();
-           table2();
+        } else {
+
+            EnregistrerVersBase();
+            table2();
 //           JOptionPane.showMessageDialog(null,"Account created successfully");
 
-          
-           
-          
 //           
 //           
 //         
-           }
-       
-        
+        }
+
     }
 
     @FXML
     private void Modifier(ActionEvent event) throws SQLException {
-        
+
         int i = Integer.valueOf(idx.getText());
-    int num = Integer.valueOf(telephone.getText());
-        
+        int num = Integer.valueOf(telephone.getText());
+
         Client c = new Client();
         c.setId(i);
         c.setName(name.getText());
         c.setTelephone(num);
-                c.setEmail(email.getText());
+        c.setEmail(email.getText());
         c.setVille(ville.getText());
         c.setCode_postal(code.getText());
         c.setCin(cin.getText());
 
-        
-        
-client.Updateclient(c);
-table2();
-        
+        client.Updateclient(c);
+        table2();
+
     }
 
     @FXML
     private void Supprimer(ActionEvent event) throws SQLException {
-        
-          String idf=idx.getText();
-        int i=Integer.valueOf(idf);
+
+        String idf = idx.getText();
+        int i = Integer.valueOf(idf);
         Client r = new Client();
-        
+
         r.setId(i);
-         
-              System.out.println(r);
-              client.delete(r);
-        
-                         table2();
+
+        System.out.println(r);
+        client.delete(r);
+
+        table2();
 
 //        SuppRole(i);
-     
-       
-        
-                JOptionPane.showMessageDialog(null,"Le client a été supprimer avec succés");
-        
-        
-        
-        
-        
+        JOptionPane.showMessageDialog(null, "Le client a été supprimer avec succés");
+
     }
-    
-       private void EnregistrerVersBase() {
-           java.sql.Connection cnx;
-     cnx = Database.getInstance().getCnx();
-             
-           try {
+
+    private void EnregistrerVersBase() {
+        java.sql.Connection cnx;
+        cnx = Database.getInstance().getCnx();
+
+        try {
             String sql = "INSERT INTO client (division_id,name,telephone,email,ville,code_postal,cin) VALUES (?,?,?,?,?,?,?)";
-            
-        PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
-        String n = telephone.getText();
-        int numero = Integer.valueOf(n);
-              
-              
 
+            PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
+            String n = telephone.getText();
+            int numero = Integer.valueOf(n);
 
-        
-        int i = comm.getSelectionModel().getSelectedIndex()+1;
-               System.out.println(i);
+            int i = comm.getSelectionModel().getSelectedIndex() + 1;
+            System.out.println(i);
             st.setInt(1, i);
             st.setString(2, name.getText());
             st.setString(3, n);
-              st.setString(4, email.getText());
+            st.setString(4, email.getText());
             st.setString(5, ville.getText());
-              st.setString(6, code.getText());
+            st.setString(6, code.getText());
             st.setString(7, cin.getText());
-          //  st.setString(8, date.getText());
+            //  st.setString(8, date.getText());
 
-        
             st.executeUpdate();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error");
+            JOptionPane.showMessageDialog(null, "Error");
         }
-    } 
-
-       
-        public void ChercheFichier(){
-      Client f = new Client();  
-        Ci.setCellValueFactory( new PropertyValueFactory<>("cin"));       
-        E.setCellValueFactory( new PropertyValueFactory<>("email"));
-
-    Chercheclient = client.RecupBase2();
-    tab.setItems(client.RecupBase2());
-    FilteredList<Client> filtreddata;
-     filtreddata = new FilteredList<>(Chercheclient ,b ->true);
-    recherche.textProperty().addListener((observable,oldValue,newValue)->{
-      filtreddata.setPredicate((u  ->  {
-          
-          if((newValue ==null) || newValue.isEmpty())
-          { return true;}
-      
-      String lowerCaseFilter = newValue.toLowerCase();
-      if (u.getCin().toLowerCase().contains(lowerCaseFilter)){
-      return true;
-      } else if (u.getEmail().toLowerCase().contains(lowerCaseFilter))
-          {return true;}   
-      return false;
-      })); 
-    });
-    
-    SortedList<Client> srt = new SortedList<>(filtreddata);
-    srt.comparatorProperty().bind(tab.comparatorProperty());
-    tab.setItems(srt);
     }
-    
-    
+
+    public void ChercheFichier() {
+        Client f = new Client();
+        Ci.setCellValueFactory(new PropertyValueFactory<>("cin"));
+        E.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        Chercheclient = client.RecupBase2();
+        tab.setItems(client.RecupBase2());
+        FilteredList<Client> filtreddata;
+        filtreddata = new FilteredList<>(Chercheclient, b -> true);
+        recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filtreddata.setPredicate((u -> {
+
+                if ((newValue == null) || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (u.getCin().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (u.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            }));
+        });
+
+        SortedList<Client> srt = new SortedList<>(filtreddata);
+        srt.comparatorProperty().bind(tab.comparatorProperty());
+        tab.setItems(srt);
+    }
 
 }

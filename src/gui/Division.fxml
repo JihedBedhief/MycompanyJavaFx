@@ -7,16 +7,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="748.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="gui.DivisionController">
+<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="748.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DivisionController">
     <stylesheets>
         <URL value="@division.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tab" layoutX="280.0" layoutY="147.0" prefHeight="200.0" prefWidth="226.0">
+      <TableView fx:id="tab" layoutX="343.0" layoutY="147.0" prefHeight="200.0" prefWidth="304.0">
         <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="taux" prefWidth="75.0" text="Taux" />
+          <TableColumn fx:id="id" prefWidth="92.0" text="Id" />
+          <TableColumn fx:id="type" prefWidth="107.0" text="Type" />
+            <TableColumn fx:id="taux" prefWidth="71.0" text="Taux" />
         </columns>
       </TableView>
       <TextField fx:id="t" layoutX="51.0" layoutY="194.0" promptText="type" />
