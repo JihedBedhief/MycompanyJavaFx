@@ -5,6 +5,7 @@
  */
 package services;
 
+import Entity.Abonnement;
 import Entity.Division;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mycompany.database.Database;
@@ -45,7 +48,7 @@ public class ServiceDivision implements IServiceDivision<Division> {
             String requeteDelete = "DELETE FROM division WHERE id=" + d.getId() + "";
             ste.executeUpdate(requeteDelete);
         } else {
-            System.out.println("La division n'existe pas");
+            System.out.println("Le Role n'existe pas");
         }
         return true;
     }
@@ -123,4 +126,43 @@ public class ServiceDivision implements IServiceDivision<Division> {
     return list;
     }
 
+       public Division SelectDivision(int id){
+        Division r = new Division();
+        String req = "SELECT * FROM division where id ="+id+"";
+        
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+
+        ResultSet rs = ps.executeQuery(req);
+            
+            while(rs.next()){           
+                 
+                r = new Division(rs.getInt("id"), rs.getString("type"),rs.getDouble("taux_remise"));
+
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDivision .class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
+     
+            public boolean UpdateDiv(Division d ) throws SQLException {
+        if (search(d)==true){
+            PreparedStatement pre=cnx.prepareStatement("UPDATE division SET type ='"+d.getType()+"',taux_remise ='"+d.getTaux_remise()+"'  WHERE `id`='"+ d.getId() +"' ");
+            
+           
+            pre.executeUpdate();
+            return true;
+        }
+        else{
+           System.out.println("La division n'existe pas");
+           return true;
+        } 
+        
+        
+    }
+     
+     
 }

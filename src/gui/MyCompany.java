@@ -30,10 +30,16 @@ public class MyCompany extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass(). getResource("Division.fxml"));
+            Parent root = FXMLLoader.load(getClass(). getResource("Client.fxml"));
             Scene scene = new Scene(root);
+          
+            
+
         //sorry about that - Windows defender issue.
-        //move around here
+        //move around heresss
+      
+            
+            
             primaryStage.setTitle("Division");
             primaryStage.setScene(scene);
             primaryStage.show();         

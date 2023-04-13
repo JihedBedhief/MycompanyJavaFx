@@ -126,26 +126,21 @@ public class DivisionController implements Initializable {
            }
            
             @FXML
-             void Modifier(ActionEvent event) {
+             void Modifier(ActionEvent event) throws SQLException {
                  
     int i = Integer.valueOf(idx.getText());
     String typ = t.getText();
     Double taux = Double.valueOf(ta.getText());
     String s = ta.getText();
         
+        Division d = new Division();
+        d.setId(i);
+        d.setType(typ);
+        d.setTaux_remise(taux);
         
- 
-       String sql =" UPDATE `division` SET `type`='"+typ+"',`taux_remise`='"+taux+"'  where id='"+i+"' ";
-        try {
-//        try {
-         PreparedStatement st =  cnx.prepareStatement(sql);
-         st.executeUpdate();
-            table();
-          JOptionPane.showMessageDialog(null,"Le role a été modifier");
-    }catch(SQLException ex){
-        ex.getMessage();
-    
-    }
+        
+sr.UpdateDiv(d);
+table();
         
 
     }
