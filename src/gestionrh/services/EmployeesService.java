@@ -291,16 +291,22 @@ public class EmployeesService {
 }
    }
     
-     public boolean validerNom(String s){
-    Pattern p = Pattern.compile("[a-zA-Z]+");
-    Matcher m = p.matcher(s);
-    if (m.find() && !m.group().equals(s)){
-        return true;
-    }
-    else {
+     public boolean validerNom(String nom){
+    if (nom == null || nom.isEmpty()) {
         return false;
     }
+    if (nom.length() > 16) {
+        return false;
+    }
+    for (int i = 0; i < nom.length(); i++) {
+        char lettre = nom.charAt(i);
+        if (!Character.isLetter(lettre) || !Character.isLowerCase(lettre) && !Character.isUpperCase(lettre)) {
+            return false;
+        }
+    }
+    return true;
 }
+
 
        
       public boolean validerPrenom(String s){
