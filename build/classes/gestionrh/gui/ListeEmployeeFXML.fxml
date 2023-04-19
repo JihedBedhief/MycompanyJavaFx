@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ListeEmployeeFXMLController">
+   <children>
+      <TableView fx:id="tableEmp" layoutX="127.0" layoutY="90.0" prefHeight="239.0" prefWidth="379.0">
+        <columns>
+          <TableColumn fx:id="nombtn" prefWidth="75.0" text="nom" />
+            <TableColumn fx:id="prenombtn" prefWidth="75.0" text="prenom" />
+            <TableColumn fx:id="emailbtn" prefWidth="75.0" text="email" />
+            <TableColumn fx:id="phonenumbtn" prefWidth="75.0" text="phoneNum" />
+            <TableColumn fx:id="cinbtn" prefWidth="75.0" text="Cin" />
+        </columns>
+      </TableView>
+      
+      <Button fx:id="ajouterbtn" layoutX="224.0" layoutY="351.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
+      <Button fx:id="Modiferbtn" layoutX="340.0" layoutY="351.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button fx:id="Supprimerbtn" layoutX="453.0" layoutY="351.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+     <Pane layoutY="59.0" prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+       <Text layoutX="26.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employees" wrappingWidth="245.13671875">
+         <font>
+            <Font name="Bauhaus 93" size="32.0" />
+         </font>
+      </Text>
+     <!-- <HBox layoutX="26.0" layoutY="62.0" prefHeight="82.0" prefWidth="200.0">
+         <children>
+            <FontAwesomeIcon fill="#2196f3" glyphName="USER_PLUS" size="45">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <FontAwesomeIcon fill="#76ff03" glyphName="REFRESH" layoutX="10.0" layoutY="49.0" size="45">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <FontAwesomeIcon fill="#607d8b" glyphName="PRINT" layoutX="62.0" layoutY="49.0" size="45" />
+         </children>
+      </HBox>
+      <FontAwesomeIcon fill="#d32f2f" glyphName="CLOSE" layoutX="540.0" layoutY="37.0" size="20" />-->
+   </children>
+</AnchorPane>

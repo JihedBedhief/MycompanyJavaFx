@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ListeContratController">
+   <children>
+      <TableView fx:id="contrattab" layoutX="210.0" layoutY="39.0" prefHeight="301.0" prefWidth="376.0">
+        <columns>
+          <TableColumn fx:id="typebtn" prefWidth="75.0" text="Type" />
+          <TableColumn fx:id="salairebtn" prefWidth="75.0" text="Salaire" />
+            <TableColumn fx:id="datedbtn" prefWidth="75.0" text="Date debut" />
+            <TableColumn fx:id="datefbtn" prefWidth="75.0" text="Date fin" />
+            <TableColumn fx:id="empbtn" prefWidth="75.0" text="employe" />
+        </columns>
+      </TableView>
+      <Button fx:id="supprimerbtn" layoutX="463.0" layoutY="341.0" mnemonicParsing="false" onAction="#suprimer" text="Supprimer" />
+      <Button fx:id="modifierbtn" layoutX="269.0" layoutY="341.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <CheckBox fx:id="cdi" layoutX="26.0" layoutY="57.0" mnemonicParsing="false" onAction="#bien" text="CDI" />
+      <CheckBox fx:id="civp" layoutX="116.0" layoutY="57.0" mnemonicParsing="false" onAction="#resolu" text="CIVP" />
+      <Button layoutX="58.0" layoutY="269.0" mnemonicParsing="false" onAction="#print" text="Imrimer" />
+   </children>
+</AnchorPane>

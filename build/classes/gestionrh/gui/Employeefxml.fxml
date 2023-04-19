@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="438.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.EmployeefxmlController">
+    <stylesheets>
+        <URL value="@employeefxml.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="34.0" layoutY="69.0" text="Cin" />
+      <Label layoutX="35.0" layoutY="105.0" text="Nom" />
+      <Label layoutX="34.0" layoutY="142.0" text="Prenom" />
+      <Label layoutX="34.0" layoutY="183.0" text="Email" />
+      <Label layoutX="34.0" layoutY="223.0" text="Phone num" />
+      <TextField fx:id="cinbtn" layoutX="160.0" layoutY="65.0" />
+      <TextField fx:id="nimbtn" layoutX="160.0" layoutY="101.0" />
+      <TextField fx:id="prenombtn" layoutX="160.0" layoutY="138.0" />
+      <TextField fx:id="emailbtn" layoutX="160.0" layoutY="179.0" />
+      <TextField fx:id="phonenumbtn" layoutX="160.0" layoutY="219.0" />
+      <Button fx:id="ajoutebtn" layoutX="173.0" layoutY="267.0" mnemonicParsing="false" onAction="#ajoute" text="ajouter" />
+      <Text layoutX="181.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Employé" />
+      <Button fx:id="retourbtn" layoutX="250.0" layoutY="267.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+   </children>
+</AnchorPane>
