@@ -31,6 +31,9 @@ public class ServiceClient implements IServiceClient<Client>{
         cnx = Database.getInstance().getCnx();
     }
 
+           private ObservableList data;
+
+    
     @Override
     public void ajouter(Client d) throws SQLException {
         
@@ -143,6 +146,10 @@ ste.executeUpdate(requeteInsert);
     return list;
     }
     
+      
+  
+    
+      
       public static ObservableList<String> RecupCombo(){
              
              
@@ -170,6 +177,26 @@ ste.executeUpdate(requeteInsert);
     } 
     return list;
     }
+      
+      
+         public boolean UpdateGrade(Client d ) throws SQLException {
+        if (search(d)==true){
+            PreparedStatement pre=cnx.prepareStatement("UPDATE client SET division_id ='"+d.getDivision_id().getId()+"'  WHERE `id`='"+ d.getId() +"' ");
+            
+           
+            pre.executeUpdate();
+            return true;
+        }
+        else{
+           System.out.println("La division n'existe pas");
+           return true;
+        } 
+        
+        
+    }
+      
+      
+      
         public boolean Updateclient(Client d ) throws SQLException {
         if (search(d)==true){
             PreparedStatement pre=cnx.prepareStatement("UPDATE client SET name ='"+d.getName()+"',telephone ='"+d.getTelephone()+"',email ='"+d.getEmail()+"',ville ='"+d.getVille()+"',code_postal ='"+d.getCode_postal()+"',cin ='"+d.getCin()+"'  WHERE `id`='"+ d.getId() +"' ");
@@ -197,5 +224,33 @@ ste.executeUpdate(requeteInsert);
             return false; 
         return pat.matcher(email).matches(); 
     } 
+      
+      
+       public int RecupTotal(){
+             
+             int total = 0;
+    
+       java.sql.Connection cnx;
+     cnx = Database.getInstance().getCnx();
+          String sql = "SELECT COUNT(*) AS total_clent FROM client";
+    try {
+       
+        PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
+
+    ResultSet R = st.executeQuery();
+    while (R.next()){
+      
+     
+    total = R.getInt(1);
+    
+     
+      
+    }
+    }catch (SQLException ex){
+    ex.getMessage(); 
+    } 
+    return total;
+    }
+      
       
 }

@@ -129,7 +129,7 @@ public class ServiceAbonnement implements IServiceAbonnement<Abonnement> {
     return list;
     }
      
-       public boolean modifier(Abonnement t) throws SQLException {
+       public boolean Modif(Abonnement t) throws SQLException {
         if (search(t)==true){
             PreparedStatement pre=cnx.prepareStatement("UPDATE abonnement SET type ='"+t.getType()+"',duree ='"+t.getDuree()+"',frais ='"+t.getFrais()+"'  WHERE `id`='"+ t.getId() +"' ");
             

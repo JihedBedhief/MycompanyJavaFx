@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package services;
 
 import Entity.Abonnement;
@@ -110,12 +114,13 @@ Statement ste= cnx.createStatement();
             int telephone=rs.getInt(10);
             String nom = rs.getString(11);
             String statuts = rs.getString(12);
+            String image = rs.getString(16);
 
             
             
             
-            p = new User(id, abonnement, email, roles, password, matricule, adresse,domaine ,pays ,telephone,nom,statuts);
-            User.connecte=new User(id, abonnement, email, roles, password, matricule, adresse,domaine ,pays ,telephone,nom,statuts);
+            p = new User(id, abonnement, email, roles, password, matricule, adresse,domaine ,pays ,telephone,nom,statuts,image);
+            User.connecte=new User(id, abonnement, email, roles, password, matricule, adresse,domaine ,pays ,telephone,nom,statuts,image);
         }
         return p;    }
     
@@ -217,6 +222,25 @@ Statement ste= cnx.createStatement();
     ex.getMessage(); 
     } 
     return list;
+    }
+         
+         
+           public boolean Up(User t) throws SQLException {
+        if (search(t)==true){
+            PreparedStatement pre=cnx.prepareStatement("UPDATE user SET nom ='"+t.getNom()+"',image= '"+t.getImage()+"'  WHERE `id`='"+ t.getId() +"' ");
+            
+//               pre.setDouble(1,p.getRate());
+//
+//         pre.setInt(2,p.getId());
+            pre.executeUpdate();
+            return true;
+        }
+        else{
+           System.out.println("L'ABRARS n'existe pas");
+           return true;
+        } 
+        
+        
     }
          
           public boolean UNBAN(User t) throws SQLException {

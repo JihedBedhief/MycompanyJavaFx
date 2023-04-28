@@ -17,14 +17,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -64,6 +72,14 @@ public class UserController implements Initializable {
     private TableColumn<User, String> statuts;
     @FXML
     private TableColumn<User, String> Actions;
+                        ObservableList<User> Chercheuser;
+    @FXML
+    private TextField cherche;
+    @FXML
+    private CheckBox desabled;
+    @FXML
+    private CheckBox enabled;
+
 
  public UserController(){
         Connection cnx = Database.getInstance().getCnx();
@@ -106,12 +122,112 @@ dure.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<User,String>,
                System.out.println(S.RecupBase2());
         
        }
+           public void ChercheFichier(){
+      User f = new User();
+        nom.setCellValueFactory(new PropertyValueFactory <>("nom"));
+                statuts.setCellValueFactory(new PropertyValueFactory <>("statuts"));
+
+       
+    Chercheuser = S.RecupBase2();
+    tab.setItems(S.RecupBase2());
+    FilteredList<User> filtreddata;
+     filtreddata = new FilteredList<>(Chercheuser ,b ->true);
+    cherche.textProperty().addListener((observable,oldValue,newValue)->{
+      filtreddata.setPredicate((u  ->  {
+          
+          if((newValue ==null) || newValue.isEmpty())
+          { return true;}
+      
+      String lowerCaseFilter = newValue.toLowerCase();
+      if (u.getNom().toLowerCase().contains(lowerCaseFilter)){
+      return true;
+      } else if (u.getNom().toLowerCase().contains(lowerCaseFilter))
+          {return true;}
+         else if (u.getStatuts().toLowerCase().contains(lowerCaseFilter))
+          {return true;}
+     
+        
+      return false;
+      })); 
+    });
+    
+    SortedList<User> srt = new SortedList<>(filtreddata);
+    srt.comparatorProperty().bind(tab.comparatorProperty());
+    tab.setItems(srt);
+    }
+        
+       
+           
+@FXML
+public void desabled(ActionEvent event) {
+    if (desabled.isSelected()) {
+        enabled.setSelected(false);
+        ObservableList<User> list = FXCollections.observableArrayList();
+        list = S.RecupBase2();
+        if (!list.isEmpty()) {
+            ObservableList<User> list2 = FXCollections.observableArrayList();
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getStatuts().equals("desabled")) {
+                    list2.add(list.get(i));
+                }
+            }
+            if (!list2.isEmpty()) {
+                tab.setItems(list2);
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION, "Aucune réclamation bien envoyée.");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                enabled.setSelected(false);
+            }
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION, "Vous n'avez aucune réclamation avec cette résolution.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            enabled.setSelected(false);
+        }
+    } else {
+        table2(); // Assuming this method is defined elsewhere
+    }
+}
+
+@FXML
+public void enabled(javafx.event.ActionEvent event) throws SQLException {
+    if (enabled.isSelected()) {
+        desabled.setSelected(false);
+        ObservableList<User> list = FXCollections.observableArrayList();
+        list = S.RecupBase2();
+        if (!list.isEmpty()) {
+            ObservableList<User> list2 = FXCollections.observableArrayList();
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getStatuts().equals("enable")) {
+                    list2.add(list.get(i));
+                }
+            }
+            if (!list2.isEmpty()) {
+                tab.setItems(list2);
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION, "Aucune reclamation resolu.");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                desabled.setSelected(false);
+            }
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION, "Vous n'avez aucune reclamation avec cette resolution");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            desabled.setSelected(false);
+        }
+    } else {
+        table2(); 
+    }
+}
            
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         table2();
+        ChercheFichier();
           
                   Callback<TableColumn<User, String>, TableCell<User, String>> cellFoctory = (TableColumn<User, String> param) -> {
             // make cell containing buttons

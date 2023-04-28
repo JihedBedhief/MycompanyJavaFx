@@ -8,7 +8,10 @@ package services;
 import java.sql.SQLException;
 import java.util.List;
 
-
+/**
+ *
+ * @author MediaCenter Zaghouan
+ */
 public interface IServiceClient <Client>{
      void ajouter(Client d) throws SQLException;
     boolean delete(Client d) throws SQLException;

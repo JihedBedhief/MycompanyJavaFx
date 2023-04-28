@@ -147,6 +147,52 @@ public class ServiceDivision implements IServiceDivision<Division> {
         }
         return r;
     }
+       
+       
+       public Division listerEmployeesparNom(String nom) {
+        Division rec = new Division();
+    try (PreparedStatement ps = Database.getInstance().getCnx().prepareStatement(
+            "SELECT * FROM division WHERE type = ?")) {
+        ps.setString(1, nom);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                
+                              rec = new Division(rs.getInt("id"), rs.getString("type"),rs.getDouble("taux_remise"));
+
+              
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return rec;
+}
+
+       
+           public Division SelectDivisionbyname(String s){
+        Division r = new Division();
+        
+        try {
+                    String req = "SELECT * FROM division where type =?" ;
+
+            PreparedStatement ps = cnx.prepareStatement(req);
+ps.setString(1, s);
+        ResultSet rs = ps.executeQuery(req);
+            
+            while(rs.next()){           
+                 
+                r = new Division(rs.getInt("id"), rs.getString("type"),rs.getDouble("taux_remise"));
+
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDivision .class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
+       
+       
      
             public boolean UpdateDiv(Division d ) throws SQLException {
         if (search(d)==true){
@@ -162,6 +208,32 @@ public class ServiceDivision implements IServiceDivision<Division> {
         } 
         
         
+    }
+            
+             public int RecupTotal(){
+             
+             int total = 0;
+    
+       java.sql.Connection cnx;
+     cnx = Database.getInstance().getCnx();
+          String sql = "SELECT COUNT(*) AS total_division FROM division";
+    try {
+       
+        PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
+
+    ResultSet R = st.executeQuery();
+    while (R.next()){
+      
+     
+    total = R.getInt(1);
+    
+     
+      
+    }
+    }catch (SQLException ex){
+    ex.getMessage(); 
+    } 
+    return total;
     }
      
      

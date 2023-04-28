@@ -26,6 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import services.ServiceUser;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -67,20 +70,33 @@ public class LoginController implements Initializable {
         }
         else if(u.getRoles().equals("[\\\"ROLE_USER\\\"]")) {
         
-
+     TrayNotification tray = new TrayNotification();
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.setTitle("Login success");
+            tray.setMessage("Thank you signing in.You may now proceed to your respective duty");
+            tray.setAnimationType(AnimationType.SLIDE);
+            tray.showAndDismiss(Duration.millis(1500));
            Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("User.fxml")));       
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("DashboarUser.fxml")));       
                     stage.setScene(scene);
                     stage.setTitle("Espace Utilisateur");
                     stage.show(); 
+                    
         } else if(u.getRoles().equals("[\\\"ROLE_ADMIN\\\"]")) {
+            
+                 TrayNotification tray = new TrayNotification();
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.setTitle("Login success");
+            tray.setMessage("Thank you signing in.You may now proceed to your respective duty");
+            tray.setAnimationType(AnimationType.SLIDE);
+            tray.showAndDismiss(Duration.millis(1500));
 
             Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Division.fxml")));       
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("DashboardAdmin.fxml")));       
                     stage.setScene(scene);
                     stage.setTitle("Espace Admin");
                     stage.show(); 
@@ -94,6 +110,19 @@ public class LoginController implements Initializable {
                     Stage stage = (Stage) node.getScene().getWindow(); 
                     stage.close();
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Inscription.fxml")));       
+                    stage.setScene(scene);
+                    stage.setTitle("Login");
+                    
+                    stage.show(); 
+    }
+    
+    @FXML
+    private void Forgetpass(ActionEvent event) throws IOException {
+        
+        Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow(); 
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Forgetpassword.fxml")));       
                     stage.setScene(scene);
                     stage.setTitle("Login");
                     

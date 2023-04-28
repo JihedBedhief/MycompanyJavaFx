@@ -8,7 +8,10 @@ package services;
 import java.sql.SQLException;
 import java.util.List;
 
-
+/**
+ *
+ * @author user
+ */
 public interface IServiceDivision <Division>{
     void ajouter(Division d) throws SQLException;
     boolean delete(Division d) throws SQLException;
