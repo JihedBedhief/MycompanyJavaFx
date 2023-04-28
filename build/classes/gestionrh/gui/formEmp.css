@@ -1,0 +1,32 @@
+#AnchorPane {
+    -fx-background-color: #f2f2f2; /* Sets the background color of the AnchorPane */
+}
+
+Label {
+    -fx-font-weight: bold; /* Makes all labels bold */
+}
+
+TextField {
+    -fx-background-color: #fff; /* Sets the background color of text fields to white */
+    -fx-border-color: #ccc; /* Sets the border color of text fields to light gray */
+    -fx-border-width: 1px; /* Sets the border width of text fields to 1px */
+    -fx-border-radius: 3px; /* Sets the border radius of text fields to 3px */
+}
+
+ComboBox {
+    -fx-background-color: #fff; /* Sets the background color of combo boxes to white */
+    -fx-border-color: #ccc; /* Sets the border color of combo boxes to light gray */
+    -fx-border-width: 1px; /* Sets the border width of combo boxes to 1px */
+    -fx-border-radius: 3px; /* Sets the border radius of combo boxes to 3px */
+}
+
+Button {
+    -fx-background-color: #4CAF50; /* Sets the background color of buttons to green */
+    -fx-text-fill: #fff; /* Sets the text color of buttons to white */
+    -fx-border-radius: 3px; /* Sets the border radius of buttons to 3px */
+    -fx-padding: 8px 16px; /* Sets the padding of buttons to 8px on top/bottom and 16px on left/right */
+}
+
+Button:hover {
+    -fx-background-color: #3e8e41; /* Sets the background color of buttons to dark green on hover */
+}

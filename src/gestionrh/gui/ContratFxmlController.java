@@ -6,6 +6,8 @@
 package gestionrh.gui;
 
 import static com.sun.javafx.animation.TickCalculation.sub;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import gestionrh.entities.Contrat;
 import gestionrh.entities.Employees;
 import gestionrh.services.ContratService;
@@ -32,10 +34,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.mail.Message.RecipientType;
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -50,6 +54,12 @@ import javax.swing.JOptionPane;
 public class ContratFxmlController implements Initializable {
     ContratService rec = new ContratService();
     
+     EmployeesService gr = new EmployeesService();
+    String cinfind;
+    String formA;
+    String formP;
+    String exper;
+    
     
     
     EmployeesService es = new EmployeesService() ; 
@@ -62,85 +72,105 @@ public class ContratFxmlController implements Initializable {
     private DatePicker datefbtn;
     @FXML
     private TextField salairebtn;
-    @FXML
     private ComboBox<String> empcombo;
     @FXML
     private Button ajoutbtn;
     @FXML
     private DatePicker datedhbtn;
+    @FXML
+    private Label nomempbtn;
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // salairebtn.setDisable(true);
-        List <Contrat> listecontrat = rec.listerContrats();
+       //
+     
          ArrayList<Employees> listeEmpl = es.listerEmployees() ; 
-    //    for( Contrat c: listecontrat){
-            for(Employees em : listeEmpl){
-          // if(!c.compareTo(em.getId())) 
-        
-            empcombo.getItems().add(em.getNom());
-           
-        }
-        //   }
-        
-        List<String> cont = Arrays.asList(
-            "CDI", "CIVP"
-           
-        );
+           // for(Employees em : listeEmpl){     
+           // empcombo.getItems().add(em.getCin());   }
             
-        typebtn.setItems(FXCollections.observableArrayList(cont));
-         
+            int lastIndex = listeEmpl.size() - 1; 
+            String dernierNomEmp = listeEmpl.get(lastIndex).getNom();
+            cinfind = listeEmpl.get(lastIndex).getCin();
+            formA = listeEmpl.get(lastIndex).getFormationA();
+            formP = listeEmpl.get(lastIndex).getFormationP();
+            exper = listeEmpl.get(lastIndex).getExperience();  
+            double salary = calculateSalary(formA, formP, exper);
+            salairebtn.setText(String.format("%.2f €", salary));
+            nomempbtn.setText(dernierNomEmp);
     
-
-
+            
+        List<String> cont = Arrays.asList("CDI", "CIVP");       
+        typebtn.setItems(FXCollections.observableArrayList(cont));
+        
+            
     }    
     
+      public static final String ACCOUNT_SID = "AC75038046937bd10e2a96db08e57129da";
+    public static final String AUTH_TOKEN = "35cd0e2c6b64d006d5ed1532126d8f07";
     
-    public void sendmail(String email , Contrat name , String prenom){
-       
-           Properties props=new Properties();
-        props.put("mail.smtp.host","smtp.gmail.com");
-        props.put("mail.smtp.port",465);
-        props.put("mail.smtp.user","derouiche568@gmail.com");
-        props.put("mail.smtp.auth",true);
-        props.put("mail.smtp.starttls.enable",true);
-        props.put("mail.smtp.debug",true);
-        props.put("mail.smtp.socketFactory.port",465);
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback",false); 
+        public void sendsms(String code ){
+    
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21698781664"),
+                new com.twilio.type.PhoneNumber("+17407167788"),
+                code)
+            .create();
+
+        System.out.println(message.getSid());
+
         
-        try {             
-                Session session = Session.getDefaultInstance(props, null);
-                session.setDebug(true);
-                MimeMessage message = new MimeMessage(session);
-                message.setText("Your contract is : " + name);
-                message.setSubject("Contrat");
-                message.setFrom(new InternetAddress("derouiche568@gmail.com"));
-                message.addRecipient(RecipientType.TO, new InternetAddress(email.trim()));
-                message.saveChanges();
-                try
-                {
-                Transport transport = session.getTransport("smtp");
-                transport.connect("smtp.gmail.com","derouiche568@gmail.com","rayxxvzckpdqvrvs");
-                transport.sendMessage(message, message.getAllRecipients());
-                transport.close();
+    
+    
+    
+    }
+    
+    
+   
+    
+    public void sendmail(String email, Contrat name, String prenom) {
+       
+    Properties props = new Properties();
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", 465);
+    props.put("mail.smtp.user", "pidevmycompany2023@gmail.com");
+    props.put("mail.smtp.auth", true);
+    props.put("mail.smtp.starttls.enable", true);
+    props.put("mail.smtp.debug", true);
+    props.put("mail.smtp.socketFactory.port", 465);
+    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    props.put("mail.smtp.socketFactory.fallback", false); 
+        
+    try {             
+        Session session = Session.getDefaultInstance(props, null);
+        session.setDebug(true);
+        MimeMessage message = new MimeMessage(session);
+        message.setSubject("Contract: " + name);
+        message.setFrom(new InternetAddress("pidevmycompany2023@gmail.com"));
+        message.addRecipient(RecipientType.TO, new InternetAddress(email.trim()));
+        message.setText("Dear " + prenom + ",\n\nPlease find attached your contract. If you have any questions, please let me know.\n\nBest regards,\n[Your name]");
+        message.saveChanges();
+        try {
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", "pidevmycompany2023@gmail.com","guyuwthwzlzquasf");
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
                 
-            
-                
-                JOptionPane.showMessageDialog(null,"le contrat a envoyé avec succée"); 
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,"Please check your internet connection");
-                }              
-            
-        } catch (Exception e) {
-            e.printStackTrace();  
-            JOptionPane.showMessageDialog(null,e);
-        }  
-       }
+            JOptionPane.showMessageDialog(null, "The contract has been sent successfully."); 
+        } catch (MessagingException me) {
+            JOptionPane.showMessageDialog(null, "Failed to send the contract. Please check your internet connection.");
+            me.printStackTrace();
+        }              
+    } catch (Exception e) {
+        e.printStackTrace();  
+        JOptionPane.showMessageDialog(null, e);
+    }  
+}
+
     
     
 
@@ -150,31 +180,37 @@ public class ContratFxmlController implements Initializable {
          LocalDate dateDebut = datefbtn.getValue();
         LocalDate dateFin = datedhbtn.getValue();
         
-        if (typebtn.getSelectionModel().isEmpty()  || empcombo.getSelectionModel().isEmpty() || salairebtn.getText().equals("") || datefbtn.getValue() == null || datedhbtn.getValue() == null) {
+        if (typebtn.getSelectionModel().isEmpty()  || salairebtn.getText().equals("") || datefbtn.getValue() == null || datedhbtn.getValue() == null) {
     Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez vérifier les champs", ButtonType.OK);
     alert.showAndWait();
 }
 
-                else if (!rec.validerSalaire(Double.parseDouble(salairebtn.getText()))) {
-                               Alert alert = new Alert(Alert.AlertType.ERROR, "valider Salaire", ButtonType.OK);
-                               alert.showAndWait();
-             }
+//                else if (!rec.validerSalaire(Double.parseDouble(salairebtn.getText()))) {
+//                               Alert alert = new Alert(Alert.AlertType.ERROR, "valider Salaire", ButtonType.OK);
+//                               alert.showAndWait();
+//             }
                 else if (rec.validerDate(datefbtn.getValue(),datedhbtn.getValue()) ){
                                Alert alert = new Alert(Alert.AlertType.ERROR, "valider la date debut et date fin", ButtonType.OK);
                                alert.showAndWait();
              }else{
        
-       
-          String type= typebtn.getValue();    
-          java.sql.Date localDateDebut = Date.valueOf(datefbtn.valueProperty().getValue());
-          java.sql.Date localDateFin = Date.valueOf(datefbtn.valueProperty().getValue());
-          double salaire = Double.parseDouble(salairebtn.getText());         
-          Employees e = es.listerEmployeesparNom(empcombo.getValue());
-          Contrat c = new Contrat(type,salaire,localDateDebut,localDateFin,es.listerEmployeesparNom(empcombo.getValue()));
-          rec.ajouter_contrat(c);
-            sendmail(e.getEmail(), c,e.getPrenom());
           
-                    Node node = (Node) event.getSource();
+          String type= typebtn.getValue();    
+          java.sql.Date localDateDebut = Date.valueOf(datedhbtn.valueProperty().getValue());
+          java.sql.Date localDateFin = Date.valueOf(datefbtn.valueProperty().getValue());
+          //double salaire = Double.parseDouble(salairebtn.getText());
+         // String salaire =salairebtn.getText();
+         // double salary = Double.parseDouble(salaire);
+          String inputString = salairebtn.getText();
+          String numericString = inputString.replaceAll("[^\\d.,-]", "").replace(",", ".");
+          double salary = Double.parseDouble(numericString);
+
+          Employees e = es.listerEmployeesparCin(cinfind);
+          Contrat c = new Contrat(type,salary,localDateDebut,localDateFin,es.listerEmployeesparCin(cinfind));
+          rec.ajouter_contrat(c);
+          sendmail(e.getEmail(), c,e.getPrenom()); 
+                 sendsms("sdsdsdsd");
+                  Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 
                     //stage.close();
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeContrat.fxml")));       
@@ -184,5 +220,43 @@ public class ContratFxmlController implements Initializable {
                 }
                
     }
+   public double calculateSalary(String formA, String formP, String exper) {
+    double baseSalary = 1000; 
+    
+
+    if (formA.equals("Licence")) {
+        if (formP.equals("Superieur")) {
+            baseSalary += 500;
+        } else if (formP.equals("Professionnel")) {
+            baseSalary += 1000;
+        }
+    } else if (formA.equals("Master")) {
+        if (formP.equals("Superieur")) {
+            baseSalary += 2000;
+        } else if (formP.equals("Professionnel")) {
+            baseSalary += 1800;
+        }
+    } else if (formA.equals("Ingénierie")) {
+        if (formP.equals("Professionnel")) {
+            baseSalary += 1900;
+        } else if (formP.equals("Superieur")) {
+            baseSalary += 2200;
+        }
+    } else if (formA.equals("Doctorat")) {
+        baseSalary += 2500;
+    }
+    
+    
+    if (exper.equals("Il n'a aucune experience")) {
+        baseSalary += 0;
+    } else if (exper.equals("Il a moins d'un an d'experience")) {
+        baseSalary += 800;
+    }else if (exper.equals("Il a plus d'un an d'experience")) {
+        baseSalary += 2000;
+    }
+    
+    return baseSalary;
+}
+
     
 }

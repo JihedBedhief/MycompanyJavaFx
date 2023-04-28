@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gestionrh.gui.ModifierEmployeFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@listeEmploye.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ModifierEmployeFXMLController">
    <children>
-      <Label layoutX="131.0" layoutY="97.0" text="Cin" />
-      <Label layoutX="131.0" layoutY="140.0" text="Nom" />
-      <Label layoutX="131.0" layoutY="175.0" text="Prenom" />
-      <Label layoutX="131.0" layoutY="209.0" text="Email" />
-      <Label layoutX="128.0" layoutY="251.0" text="Phone Num" />
-      <TextField fx:id="cinbtn" layoutX="226.0" layoutY="102.0" />
-      <TextField fx:id="nombtn" layoutX="226.0" layoutY="136.0" />
-      <TextField fx:id="prenombtn" layoutX="226.0" layoutY="171.0" />
-      <TextField fx:id="emailbtn" layoutX="226.0" layoutY="205.0" />
-      <TextField fx:id="phonenumbtn" layoutX="226.0" layoutY="247.0" />
-      <Button fx:id="modifierbtn" layoutX="265.0" layoutY="304.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Label layoutX="107.0" layoutY="20.0" text="Cin" />
+      <Label layoutX="107.0" layoutY="63.0" text="Nom" />
+      <Label layoutX="107.0" layoutY="105.0" text="Prenom" />
+      <Label layoutX="109.0" layoutY="146.0" text="Email" />
+      <Label layoutX="99.0" layoutY="317.0" text="Phone Num" />
+      <TextField fx:id="cinbtn" layoutX="219.0" layoutY="14.0" />
+      <TextField fx:id="nombtn" layoutX="219.0" layoutY="57.0" />
+      <TextField fx:id="prenombtn" layoutX="219.0" layoutY="99.0" />
+      <TextField fx:id="emailbtn" layoutX="219.0" layoutY="140.0" />
+      <TextField fx:id="phonenumbtn" layoutX="219.0" layoutY="311.0" />
+      <Button fx:id="modifierbtn" layoutX="239.0" layoutY="360.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button fx:id="retourbtn" layoutX="359.0" layoutY="360.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Label layoutX="100.0" layoutY="186.0" text="FormationA" />
+      <Label layoutX="100.0" layoutY="231.0" text="FormationP" />
+      <Label layoutX="103.0" layoutY="273.0" text="Experience" />
+      <ComboBox fx:id="formationabtn" layoutX="219.0" layoutY="180.0" prefHeight="39.0" prefWidth="231.0" />
+      <ComboBox fx:id="formationpbtn" layoutX="219.0" layoutY="225.0" prefHeight="39.0" prefWidth="231.0" />
+      <ComboBox fx:id="experiencebtn" layoutX="219.0" layoutY="267.0" prefHeight="39.0" prefWidth="231.0" />
    </children>
 </AnchorPane>

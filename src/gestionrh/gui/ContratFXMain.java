@@ -27,7 +27,7 @@ public class ContratFXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass(). getResource("ContratFxml.fxml"));
+            Parent root = FXMLLoader.load(getClass(). getResource("ListeContrat.fxml"));
             Scene scene = new Scene(root);
           
             

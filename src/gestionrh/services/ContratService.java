@@ -126,7 +126,38 @@ private Employees getEmployeeById(int empId) {
     return emp;
 }
 
+//***********************************************************************
 
+public Contrat get_contrat(int i) {
+        Contrat e = new Contrat();
+        String requete = "select * from contrat where id="+i;
+        try {
+            PreparedStatement ps = cnx2.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+
+                e.setId(rs.getInt("id"));
+                e.setType(rs.getString("type"));
+                e.setSalaire(rs.getDouble("salaire"));
+               e.setDatedebut(rs.getDate("datedebut"));
+                e.setDatefin(rs.getDate("datefin"));
+                int empId = rs.getInt("emp");
+                Employees emp = getEmployeeById(empId);
+                e.setEmp(emp);
+               
+                
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return e;
+
+    }
+//***********************************************************************
 public List<Contrat> listerContratsparType(String type) {
     List<Contrat> myList = new ArrayList<>();
     try (PreparedStatement ps = MyConnection.getinstance().getCnx().prepareStatement(
@@ -149,6 +180,33 @@ public List<Contrat> listerContratsparType(String type) {
     }
     return myList;
 }
+//************************************************************************************
+//************************************************************************************
+public List<Contrat> listerContratsparId(String type) {
+    List<Contrat> myList = new ArrayList<>();
+    try (PreparedStatement ps = MyConnection.getinstance().getCnx().prepareStatement(
+            "SELECT * FROM contrat WHERE id = ?")) {
+        ps.setString(1, type);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Contrat rec = new Contrat();
+                rec.setSalaire(rs.getDouble("salaire"));
+                rec.setDatedebut(rs.getDate("datedebut"));
+                rec.setDatefin(rs.getDate("datefin"));
+                int empId = rs.getInt("emp");
+                Employees emp = getEmployeeById(empId);
+                rec.setEmp(emp);
+                myList.add(rec);
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return myList;
+}
+
+//************************************************************************************
+//************************************************************************************
 
 
 public List<Contrat> listerContratsparEmp(String nom) {
@@ -304,7 +362,27 @@ public List<Contrat> listerContratsparEmp(String nom) {
     }
 }
 
+//************************************************************
+    
+      public ObservableList<Integer> getNbJoursList() {
+        ObservableList<Integer> nbJoursList = FXCollections.observableArrayList();
 
+        try {
+            Statement stmt = MyConnection.getinstance().getCnx().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT DATEDIFF(datefin,datedebut) FROM contrat");
+
+            while (rs.next()) {
+                int nbJours = rs.getInt("nb_jours");
+                int nbMois = nbJours/30;
+                nbJoursList.add(nbMois);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nbJoursList;
+    }
        
      
     

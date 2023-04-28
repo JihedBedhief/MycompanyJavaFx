@@ -86,7 +86,7 @@ phonenumbtn.setText(String.valueOf(phoneNum));
          String prenom= prenombtn.getText();
          String email= emailbtn.getText();         
          Integer phonenum=Integer.parseInt(phonenumbtn.getText());
-         rec.modifier_Employee(rec.listerEmployeesparNom(comboname.getValue()),cin,nom,prenom,email,phonenum);
+       //  rec.modifier_Employee(rec.listerEmployeesparNom(comboname.getValue()),cin,nom,prenom,email,phonenum);
         
     }
     

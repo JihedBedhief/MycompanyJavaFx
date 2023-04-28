@@ -1,0 +1,35 @@
+#AnchorPane {
+    -fx-background-color: #f2f2f2;
+}
+
+Label {
+    -fx-font-size: 14pt;
+}
+
+TextField {
+    -fx-prompt-text-fill: #aaa;
+    -fx-font-size: 14pt;
+}
+
+ComboBox {
+    -fx-font-size: 14pt;
+}
+
+Button {
+    -fx-font-size: 14pt;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+#ajoutebtn {
+    -fx-background-color: #4CAF50;
+}
+
+#retourbtn {
+    -fx-background-color: #f44336;
+}
+
+Text {
+    -fx-font-size: 18pt;
+    -fx-fill: #333;
+}

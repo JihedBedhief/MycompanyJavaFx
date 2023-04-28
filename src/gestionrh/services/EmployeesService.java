@@ -34,13 +34,16 @@ public class EmployeesService {
     
      public void ajouter_Employees(Employees r) {
         try {
-            String requete1 = "INSERT INTO employees (cin,nom,prenom,email,phoneNum) VALUES(?,?,?,?,?)";
+            String requete1 = "INSERT INTO employees (cin,nom,prenom,email,formationA,formationP,experience,phoneNum) VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement pst = MyConnection.getinstance().getCnx().prepareStatement(requete1);
             pst.setString(1, r.getCin());
             pst.setString(2, r.getNom());
             pst.setString(3, r.getPrenom());
             pst.setString(4, r.getEmail());
-            pst.setInt(5, r.getPhoneNum());
+            pst.setString(5, r.getFormationA());
+            pst.setString(6, r.getFormationP());
+            pst.setString(7, r.getExperience());
+            pst.setInt(8, r.getPhoneNum());
             pst.executeUpdate();
             System.out.println("Employees ajouté !");
 
@@ -51,15 +54,18 @@ public class EmployeesService {
      
      
      
-     public void modifier_Employee(Employees r, String cin, String nom,String prenom,String email,int phoneNum) {
+     public void modifier_Employee(Employees r, String cin, String nom,String prenom,String email, String formationA,String formationP,String experience,int phoneNum) {
         try {
-            String requete4 = " UPDATE employees SET " + "  cin= ?, nom = ? ,prenom = ? , email  = ?,phoneNum = ? WHERE id= " + r.getId();
+            String requete4 = " UPDATE employees SET " + "  cin= ?, nom = ? ,prenom = ? , email  = ?, formationA = ? ,formationP = ? , experience  = ?,phoneNum = ? WHERE id= " + r.getId();
             PreparedStatement pst = MyConnection.getinstance().getCnx().prepareStatement(requete4);
             pst.setString(1, r.getCin());
             pst.setString(2, r.getNom());
             pst.setString(3, r.getPrenom());
             pst.setString(4, r.getEmail());
-            pst.setInt(5, r.getPhoneNum());
+            pst.setString(5, r.getFormationA());
+            pst.setString(6, r.getFormationP());
+            pst.setString(7, r.getExperience());
+            pst.setInt(8, r.getPhoneNum());
             pst.executeUpdate();
             System.out.println("Employee modifié !");
 
@@ -67,26 +73,34 @@ public class EmployeesService {
             System.err.println(ex.getMessage());
         }
      }
-    //*****************************************************
-     
-     public void modifierEmp(Employees emp) {
-        try {
-            String requete2="update employees set cin=?,nom=?,prenom=?,email=?,phoneNum=? where id=?";
-            PreparedStatement pst = cnx2.prepareStatement(requete2);
-            pst.setString(1, emp.getCin());
-            pst.setString(2, emp.getNom());
-            pst.setString(3, emp.getPrenom());
-            pst.setString(4, emp.getEmail());
-            pst.setInt(5,    emp.getPhoneNum());
-            
-            pst.executeUpdate();
-           
-            System.out.println("Employee est modifié");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-    }}
      //****************************************************
-    
+      public boolean ModifierPointVente(Employees r) throws SQLDataException {
+
+               
+                String query = "UPDATE `point_vente` SET `cin`=?,`nom`=?,`prenom`=?,`email`=?,`formationA`=?,`formationP`=?,`experience`=?,`phoneNum`=? WHERE `id` = ?";
+		PreparedStatement pst;
+        try {
+                pst = cnx2.prepareStatement(query);
+                pst.setString(1, r.getCin());
+                pst.setString(2, r.getNom());
+                pst.setString(3, r.getPrenom());
+                pst.setString(4, r.getEmail());
+                pst.setString(5, r.getFormationA());
+                pst.setString(6, r.getFormationP());
+                pst.setString(7, r.getExperience());
+                pst.setInt(8, r.getPhoneNum());
+                pst.executeUpdate();
+                return true;
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeesService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+                
+               
+    }
+
+    //******************************************************
      
       public void supprimer_Employee(Employees R) {
 
@@ -113,11 +127,14 @@ public class EmployeesService {
             ResultSet rs = st.executeQuery(requete2);
             while (rs.next()) {
                 Employees rec = new Employees();
-                rec.setId(rs.getInt(1));
+                rec.setId(rs.getInt("id"));
                 rec.setCin(rs.getString("cin"));
                 rec.setNom(rs.getString("nom"));
                 rec.setPrenom(rs.getString("prenom"));
                 rec.setEmail(rs.getString("email"));
+                rec.setFormationA(rs.getString("formationA"));
+                rec.setFormationP(rs.getString("formationP"));
+                rec.setExperience(rs.getString("experience"));
                 rec.setPhoneNum(rs.getInt("phoneNum"));
                 myList.add(rec);
 
@@ -142,6 +159,9 @@ public class EmployeesService {
                 rec.setNom(rs.getString("nom"));
                 rec.setPrenom(rs.getString("prenom"));
                 rec.setEmail(rs.getString("email"));
+                rec.setFormationA(rs.getString("formationA"));
+                rec.setFormationP(rs.getString("formationP"));
+                rec.setExperience(rs.getString("experience"));
                 rec.setPhoneNum(rs.getInt("phoneNum"));
               
             }
@@ -151,6 +171,33 @@ public class EmployeesService {
     }
     return rec;
 }
+    //*********************************************************************
+     public Employees listerEmployeesparCin(String nom) {
+        Employees rec = new Employees();
+    try (PreparedStatement ps = MyConnection.getinstance().getCnx().prepareStatement(
+            "SELECT * FROM employees WHERE cin = ?")) {
+        ps.setString(1, nom);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                
+                rec.setId(rs.getInt("id"));
+                rec.setCin(rs.getString("cin"));
+                rec.setNom(rs.getString("nom"));
+                rec.setPrenom(rs.getString("prenom"));
+                rec.setEmail(rs.getString("email"));
+                rec.setFormationA(rs.getString("formationA"));
+                rec.setFormationP(rs.getString("formationP"));
+                rec.setExperience(rs.getString("experience"));
+                rec.setPhoneNum(rs.getInt("phoneNum"));
+              
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return rec;
+}
+    //*********************************************************************
        
     public List<Employees> listerEmployeesparNomPrenom(String nom, String prenom) {
     List<Employees> myList = new ArrayList<>();
@@ -167,6 +214,9 @@ public class EmployeesService {
                 rec.setNom(rs.getString("nom"));
                 rec.setPrenom(rs.getString("prenom"));
                 rec.setEmail(rs.getString("email"));
+                rec.setFormationA(rs.getString("formationA"));
+                rec.setFormationP(rs.getString("formationP"));
+                rec.setExperience(rs.getString("experience"));
                 rec.setPhoneNum(rs.getInt("phoneNum"));
                 myList.add(rec);
             }
@@ -218,14 +268,18 @@ public class EmployeesService {
         PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
 
     ResultSet rs = st.executeQuery();
-    Employees rec=new Employees();
     while (rs.next()){
+            Employees rec=new Employees();
+
       rec.setId(rs.getInt(1));
-                rec.setCin(rs.getString("cin"));
-                rec.setNom(rs.getString("nom"));
-                rec.setPrenom(rs.getString("prenom"));
-                rec.setEmail(rs.getString("email"));
-                rec.setPhoneNum(rs.getInt("phoneNum"));
+                rec.setCin(rs.getString(2));
+                rec.setNom(rs.getString(3));
+                rec.setPrenom(rs.getString(4));
+                rec.setEmail(rs.getString(5));
+                rec.setFormationA(rs.getString(7));
+                rec.setFormationP(rs.getString(8));
+                rec.setExperience(rs.getString(9));
+                rec.setPhoneNum(rs.getInt(6));
                
     
      
@@ -252,6 +306,9 @@ public class EmployeesService {
             emp.setNom(rs.getString("nom"));
             emp.setPrenom(rs.getString("prenom"));
             emp.setEmail(rs.getString("email"));
+            emp.setFormationA(rs.getString("formationA"));
+            emp.setFormationP(rs.getString("formationP"));
+            emp.setExperience(rs.getString("experience"));
             emp.setPhoneNum(rs.getInt("phoneNum"));
         }
     } catch (SQLException ex) {
@@ -291,20 +348,15 @@ public class EmployeesService {
 }
    }
     
-     public boolean validerNom(String nom){
-    if (nom == null || nom.isEmpty()) {
+     public boolean validerNom(String s){
+    Pattern p = Pattern.compile("[a-zA-Z]+");
+    Matcher m = p.matcher(s);
+    if (m.find() && !m.group().equals(s)){
+        return true;
+    }
+    else {
         return false;
     }
-    if (nom.length() > 16) {
-        return false;
-    }
-    for (int i = 0; i < nom.length(); i++) {
-        char lettre = nom.charAt(i);
-        if (!Character.isLetter(lettre) || !Character.isLowerCase(lettre) && !Character.isUpperCase(lettre)) {
-            return false;
-        }
-    }
-    return true;
 }
 
 
@@ -360,6 +412,9 @@ public class EmployeesService {
                 e.setNom(rs.getString("nom"));
                 e.setPrenom(rs.getString("prenom"));
                 e.setEmail(rs.getString("email"));
+                e.setFormationA(rs.getString("formationA"));
+                e.setFormationP(rs.getString("formationP"));
+                e.setExperience(rs.getString("experience"));
                 e.setPhoneNum(rs.getInt("phoneNum"));
                
                 
@@ -371,6 +426,36 @@ public class EmployeesService {
         }
         return e;
 
+    }
+      
+      
+      //*************************************************************
+       public static ObservableList<Employees> listerLesEmp() {
+        ObservableList<Employees> list = FXCollections.observableArrayList();
+        try {
+            Connection conn = MyConnection.getinstance().getCnx();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM employees");
+            while (resultSet.next()) {
+                Employees emp = new Employees();
+                emp.setId(resultSet.getInt("id"));
+                emp.setCin(resultSet.getString("cin"));
+                emp.setNom(resultSet.getString("nom"));
+                emp.setPrenom(resultSet.getString("prenom"));
+                emp.setEmail(resultSet.getString("email"));
+                emp.setFormationA(resultSet.getString("formationA"));
+                emp.setFormationP(resultSet.getString("formationP"));
+                emp.setExperience(resultSet.getString("experience"));
+                emp.setPhoneNum(resultSet.getInt("phoneNum"));
+                list.add(emp);
+            }
+            statement.close();
+            resultSet.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     
 }

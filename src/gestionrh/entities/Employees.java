@@ -15,6 +15,9 @@ public class Employees {
     private String nom;
     private String prenom;
     private String email;
+    private String formationA;
+    private String formationP;
+    private String experience;   
     private int phoneNum;
 
    
@@ -22,22 +25,30 @@ public class Employees {
     public Employees() {
     }
 
-    public Employees(String cin, String nom, String prenom, String email, int phoneNum) {
+    public Employees(String cin, String nom, String prenom, String email, String formationA, String formationP, String experience, int phoneNum) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
+        this.formationA = formationA;
+        this.formationP = formationP;
+        this.experience = experience;
         this.phoneNum = phoneNum;
     }
 
-    public Employees(int id, String cin, String nom, String prenom, String email, int phoneNum) {
+    public Employees(int id, String cin, String nom, String prenom, String email, String formationA, String formationP, String experience, int phoneNum) {
         this.id = id;
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
+        this.formationA = formationA;
+        this.formationP = formationP;
+        this.experience = experience;
         this.phoneNum = phoneNum;
     }
+
+   
 
     public int getId() {
         return id;
@@ -79,6 +90,31 @@ public class Employees {
         this.email = email;
     }
 
+    public String getFormationA() {
+        return formationA;
+    }
+
+    public void setFormationA(String formationA) {
+        this.formationA = formationA;
+    }
+
+    public String getFormationP() {
+        return formationP;
+    }
+
+    public void setFormationP(String formationP) {
+        this.formationP = formationP;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+    
+
     public int getPhoneNum() {
         return phoneNum;
     }
@@ -86,12 +122,13 @@ public class Employees {
     public void setPhoneNum(int phoneNum) {
         this.phoneNum = phoneNum;
     }
-    
 
     @Override
     public String toString() {
-        return "Employees{" +" cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", phoneNum=" + phoneNum + '}';
+        return "Employees{" + "cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", formationA=" + formationA + ", formationP=" + formationP + ", experience=" + experience + ", phoneNum=" + phoneNum + '}';
     }
+    
+
     
     
 }
