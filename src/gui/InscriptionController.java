@@ -116,7 +116,7 @@ public class InscriptionController implements Initializable {
            Properties props=new Properties();
         props.put("mail.smtp.host","smtp.gmail.com");
         props.put("mail.smtp.port",465);
-        props.put("mail.smtp.user","benbrahimayoubben@gmail.com");
+        props.put("mail.smtp.user","pidevmycompany2023@gmail.com");
         props.put("mail.smtp.auth",true);
         props.put("mail.smtp.starttls.enable",true);
         props.put("mail.smtp.debug",true);
@@ -130,13 +130,13 @@ public class InscriptionController implements Initializable {
                 MimeMessage message = new MimeMessage(session);
                 message.setText("Your OTP is " + jTextField7.getText());
                 message.setSubject("OTP For your Neftola Account");
-                message.setFrom(new InternetAddress("benbrahimayoubben@gmail.com"));
+                message.setFrom(new InternetAddress("pidevmycompany2023@gmail.com"));
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(email.getText().trim()));
                 message.saveChanges();
                 try
                 {
                 Transport transport = session.getTransport("smtp");
-                transport.connect("smtp.gmail.com","benbrahimayoubben@gmail.com","rayxxvzckpdqvrvs");
+                transport.connect("smtp.gmail.com","pidevmycompany2023@gmail.com","guyuwthwzlzquasf");
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
                 

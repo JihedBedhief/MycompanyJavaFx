@@ -168,7 +168,7 @@ public class AbonnementController implements Initializable {
         a.setDuree(duree);
         a.setFrais(frais);
         
-        sr.UNBAN(a);
+        sr.modifier(a);
         table();
          
     

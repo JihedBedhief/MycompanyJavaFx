@@ -30,7 +30,7 @@ public class MyCompany extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass(). getResource("Client.fxml"));
+            Parent root = FXMLLoader.load(getClass(). getResource("Abonnement.fxml"));
             Scene scene = new Scene(root);
           
             
@@ -40,7 +40,7 @@ public class MyCompany extends Application {
       
             
             
-            primaryStage.setTitle("Division");
+            primaryStage.setTitle("User");
             primaryStage.setScene(scene);
             primaryStage.show();         
             
