@@ -7,7 +7,7 @@ package controller;
 
 import entity.PointVente;
 import entity.Vente;
-import entity.mail;
+import entity.MailVente;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -132,17 +132,17 @@ public class AjouterVenteController implements Initializable {
             int c = vs.NombreVote((pv.getPointVenteByNom(checBox.getValue())).getId());
              
              if (c >= 4 && c <6){
-             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"fan");
-                         mail.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous avez récue badge fan");
+             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Bronze");
+                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous avez réçu un badge Bronze");
              }
-               if (c >= 6 && c<8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("super fan"))){
-             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"super fan");
-                         mail.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous avez récue badge super fan");
+               if (c >= 6 && c<8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Silver"))){
+             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Silver");
+                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous avez réçu un badge Silver");
 
              }
-                 if (c >= 8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("super super fan"))){
-              mail.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous avez récue badge super super fan");
-             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"super super fan");
+                 if (c >= 8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Gold"))){
+              MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous avez réçu un badge GOLD");
+             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Gold");
              }
              
             Notifications.create().title("Sucess").text("Ajouter Avec Succés").position(Pos.BOTTOM_RIGHT).showInformation();
