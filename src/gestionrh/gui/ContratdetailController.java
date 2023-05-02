@@ -117,8 +117,8 @@ private void Imprimer(ActionEvent event) {
         
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
         contentStream.beginText();
-        
-      //  contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
+                     
+      //contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
         contentStream.newLineAtOffset(100, 700);
         contentStream.showText("Employee: " + empbtn.getText());
         contentStream.newLineAtOffset(0, -20);
