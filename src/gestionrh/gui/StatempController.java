@@ -76,7 +76,7 @@ EmployeesService su = new EmployeesService();
                     stage.close();
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeEmployeeFXML.fxml")));       
                     stage.setScene(scene);
-                    stage.setTitle("modifier");
+                    stage.setTitle("retour");
                     
                     stage.show(); 
     }

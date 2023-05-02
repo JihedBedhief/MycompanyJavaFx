@@ -32,6 +32,18 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+
+
 /**
  * FXML Controller class
  *
@@ -78,24 +90,61 @@ public class ContratdetailController implements Initializable {
          
     }  
 
-    @FXML
-    private void Imprimer(ActionEvent event) {
+//    @FXML
+//    private void Imprimer(ActionEvent event) {
+//        
+//         PrinterJob job = PrinterJob.createPrinterJob();
+//       
+//        Node root= this.boxing;
+//        
+//     if(job != null){
+//     job.showPrintDialog(root.getScene().getWindow()); 
+//     Printer printer = job.getPrinter();
+//     PageLayout pageLayout = printer.createPageLayout(Paper.A3, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
+//     boolean success = job.printPage(pageLayout, root);
+//     if(success){
+//        job.endJob();
+//     }
+//   }
+//   
+//    }
+@FXML
+private void Imprimer(ActionEvent event) {
+    try {
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
         
-         PrinterJob job = PrinterJob.createPrinterJob();
-       
-        Node root= this.boxing;
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        contentStream.beginText();
         
-     if(job != null){
-     job.showPrintDialog(root.getScene().getWindow()); 
-     Printer printer = job.getPrinter();
-     PageLayout pageLayout = printer.createPageLayout(Paper.A3, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
-     boolean success = job.printPage(pageLayout, root);
-     if(success){
-        job.endJob();
-     }
-   }
-   
+      //  contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
+        contentStream.newLineAtOffset(100, 700);
+        contentStream.showText("Employee: " + empbtn.getText());
+        contentStream.newLineAtOffset(0, -20);
+        contentStream.showText("Type: " + typebtn.getText());
+        contentStream.newLineAtOffset(0, -20);
+        contentStream.showText("Salaire: " + salairebtn.getText());
+        contentStream.newLineAtOffset(0, -20);
+        contentStream.showText("Date de debut: " + datedbtn.getText());
+        contentStream.newLineAtOffset(0, -20);
+        contentStream.showText("Date de fin: " + datefbtn.getText());
+        contentStream.endText();
+        contentStream.close();
+        
+        // Save the PDF document
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("PDF Files", "*.pdf"));
+        File file = fileChooser.showSaveDialog(pane.getScene().getWindow());
+        if (file != null) {
+            document.save(file);
+            document.close();
+        }
+    } catch (IOException ex) {
+        ex.printStackTrace();
     }
+}
 
     @FXML
     private void Retour(ActionEvent event) throws IOException {

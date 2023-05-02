@@ -27,7 +27,7 @@ public class testcombo extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass(). getResource("Calendar.fxml"));
+            Parent root = FXMLLoader.load(getClass(). getResource("Calendrier.fxml"));
             Scene scene = new Scene(root);
           
             
