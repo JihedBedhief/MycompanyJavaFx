@@ -76,7 +76,9 @@ public class StatistiqueController implements Initializable {
             Logger.getLogger(StatistiqueController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-    
+       /**
+   
+     */
      public void generateBarChart() throws SQLException {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         List<stat> clients = data2;
