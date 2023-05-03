@@ -112,6 +112,8 @@ public class InscriptionController implements Initializable {
         alert.setVisible(false);
                 alert2.setVisible(false);
 
+                
+                
 
         // TODO
     }    
