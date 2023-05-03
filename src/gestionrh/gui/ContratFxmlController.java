@@ -209,8 +209,8 @@ public class ContratFxmlController implements Initializable {
           Employees e = es.listerEmployeesparCin(cinfind);
           Contrat c = new Contrat(type,salary,localDateDebut,localDateFin,es.listerEmployeesparCin(cinfind));
           rec.ajouter_contrat(c);
-          sendmail(e.getEmail(), c,e.getPrenom()); 
-                 sendsms("sdsdsdsd");
+//          sendmail(e.getEmail(), c,e.getPrenom()); 
+//                 sendsms("sdsdsdsd");
                   Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 
                     //stage.close();

@@ -169,7 +169,7 @@ for (int k = 0; k < calendarActivities.size(); k++) {
         calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
         calendarActivityBox.setMaxWidth(rectangleWidth * 0.8);
         calendarActivityBox.setMaxHeight(rectangleHeight * 0.65);
-        calendarActivityBox.setStyle("-fx-background-color:GRAY");
+        calendarActivityBox.setStyle("-fx-background-color:green");
         stackPane.getChildren().add(calendarActivityBox);
     }
 
@@ -194,6 +194,120 @@ for (int k = 0; k < calendarActivities.size(); k++) {
 }
 
 
+//private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime date) {
+//    Map<Integer, List<CalendarActivity>> calendarActivities = new HashMap<>();
+//    int year = date.getYear();
+//    int month = date.getMonthValue();
+//    Connection connection = null;
+//
+//    try {
+//        // Establish a connection to the MySQL database
+//        String url = "jdbc:mysql://localhost:3306/my_company";
+//        String user = "root";
+//        String password = "";
+//        connection = DriverManager.getConnection(url, user, password);
+//
+//        // Execute a query to retrieve the required data
+//        String query = "SELECT   c.datedebut, c.datefin, e.id, e.nom, e.prenom " +
+//                "FROM contrat c " +
+//                "JOIN employees e ON c.emp = e.id " +
+//                "WHERE YEAR(c.datedebut) = ? AND MONTH(c.datedebut) = ? OR YEAR(c.datefin) = ? AND MONTH(c.datefin) = ?";
+//
+//        PreparedStatement statement = connection.prepareStatement(query);
+//        statement.setInt(1, year);
+//        statement.setInt(2, month);
+//        statement.setInt(3, year);
+//        statement.setInt(4, month);
+//        
+//        ResultSet resultSet = statement.executeQuery();
+//
+//        // Process the result set and populate the calendar activities map
+//        while (resultSet.next()) {
+//            String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
+//            String dated= resultSet.getDate("datedebut") + " " + resultSet.getDate("datefin");
+//                      LocalDate startDate = resultSet.getDate("datedebut").toLocalDate();
+//                     LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
+//           CalendarActivity calendarActivity = new CalendarActivity(employeName, ZonedDateTime.of(startDate, LocalTime.MIDNIGHT, date.getZone()), ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
+//
+//   
+//
+//            for (LocalDate dateLocal = startDate; !dateLocal.isAfter(endDate); dateLocal = dateLocal.plusDays(1)) {
+//                int day = dateLocal.getDayOfMonth();
+//                List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
+//                activities.add(calendarActivity);
+//            }
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    } finally {
+//        if (connection != null) {
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    return calendarActivities;
+//}
+
+   
+//   private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime date) {
+//    Map<Integer, List<CalendarActivity>> calendarActivities = new HashMap<>();
+//    int year = date.getYear();
+//    int month = date.getMonthValue();
+//    Connection connection = null;
+//
+//    try {
+//        // Establish a connection to the MySQL database
+//        String url = "jdbc:mysql://localhost:3306/my_company";
+//        String user = "root";
+//        String password = "";
+//        connection = DriverManager.getConnection(url, user, password);
+//
+//        // Execute a query to retrieve the required data
+//        String query = "SELECT datefin, e.id, e.nom, e.prenom " +
+//                "FROM contrat c " +
+//                "JOIN employees e ON c.emp = e.id " +
+//                "WHERE YEAR(c.datedebut) = ? AND MONTH(c.datedebut) = ? OR YEAR(c.datefin) = ? AND MONTH(c.datefin) = ?";
+//
+//        PreparedStatement statement = connection.prepareStatement(query);
+//        statement.setInt(1, year);
+//        statement.setInt(2, month);
+//        statement.setInt(3, year);
+//        statement.setInt(4, month);
+//        
+//        ResultSet resultSet = statement.executeQuery();
+//
+//        // Process the result set and populate the calendar activities map
+//        while (resultSet.next()) {
+//            //String employeName = resultSet.getString("nom");
+//            String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
+//            LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
+//            CalendarActivity calendarActivity = new CalendarActivity(employeName, null, ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
+//
+//            int day = endDate.getDayOfMonth();
+//            List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
+//            activities.add(calendarActivity);
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    } finally {
+//        if (connection != null) {
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    return calendarActivities;
+//}
+//
+//}
+
 private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime date) {
     Map<Integer, List<CalendarActivity>> calendarActivities = new HashMap<>();
     int year = date.getYear();
@@ -208,7 +322,7 @@ private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDat
         connection = DriverManager.getConnection(url, user, password);
 
         // Execute a query to retrieve the required data
-        String query = "SELECT   c.datedebut, c.datefin, e.id, e.nom, e.prenom " +
+        String query = "SELECT datefin, e.id, e.nom, e.prenom " +
                 "FROM contrat c " +
                 "JOIN employees e ON c.emp = e.id " +
                 "WHERE YEAR(c.datedebut) = ? AND MONTH(c.datedebut) = ? OR YEAR(c.datefin) = ? AND MONTH(c.datefin) = ?";
@@ -224,18 +338,12 @@ private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDat
         // Process the result set and populate the calendar activities map
         while (resultSet.next()) {
             String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
-            String dated= resultSet.getDate("datedebut") + " " + resultSet.getDate("datefin");
-                      LocalDate startDate = resultSet.getDate("datedebut").toLocalDate();
-                     LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
-           CalendarActivity calendarActivity = new CalendarActivity(employeName, ZonedDateTime.of(startDate, LocalTime.MIDNIGHT, date.getZone()), ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
+            LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
+            CalendarActivity calendarActivity = new CalendarActivity(employeName, null, ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
 
-   
-
-            for (LocalDate dateLocal = startDate; !dateLocal.isAfter(endDate); dateLocal = dateLocal.plusDays(1)) {
-                int day = dateLocal.getDayOfMonth();
-                List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
-                activities.add(calendarActivity);
-            }
+            int day = endDate.getDayOfMonth();
+            List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
+            activities.add(calendarActivity);
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -251,15 +359,7 @@ private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDat
 
     return calendarActivities;
 }
-
-
-
-
-
-
 }
-
-
 
 
 
