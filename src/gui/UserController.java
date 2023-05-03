@@ -44,7 +44,7 @@ import services.ServiceUser;
 /**
  * FXML Controller class
  *
- * @author MediaCenter Zaghouan
+ * @author hassen
  */
 public class UserController implements Initializable {
 
