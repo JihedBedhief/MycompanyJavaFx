@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class
  *
- * @author MediaCenter Zaghouan
+ * @author hassen
  */
 public class DashboarUserController implements Initializable {
 
