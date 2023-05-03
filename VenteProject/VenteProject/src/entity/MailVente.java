@@ -39,7 +39,7 @@ public class MailVente {
     int wa9t = Character.getNumericValue(heure)+Character.getNumericValue(heure1);
    
   
-          new Email("anas.basta@esprit.tn","ezpuhxfaqyuoeytg", rev, Subjet, "<h1 style=\"color: green;\" > Bonsoir, \n </h1> <h2 style=\"color: green;\" >"+Text+"\n </h2> <h1 style=\"color: green;\"> ,Merci pour vos efforts. </h1>"); // Send a message
+          new Email("anas.basta@esprit.tn","ezpuhxfaqyuoeytg", rev, Subjet, "<h2 style=\"color: green;\" > Bonsoir, \n </h2> <h1 style=\"color: green;\" >"+Text+"\n </h1> <h2 style=\"color: green;\"> Merci pour vos efforts. </h2>"); // Send a message
 
    
     }

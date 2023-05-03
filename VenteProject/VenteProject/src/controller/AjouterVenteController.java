@@ -133,15 +133,15 @@ public class AjouterVenteController implements Initializable {
              
              if (c >= 4 && c <6){
              pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Bronze");
-                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous avez réçu un badge Bronze");
+                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous venez de recevoir un badge Bronze");
              }
                if (c >= 6 && c<8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Silver"))){
              pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Silver");
-                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous avez réçu un badge Silver");
+                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous venez de recevoir un badge Silver");
 
              }
                  if (c >= 8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Gold"))){
-              MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous avez réçu un badge GOLD");
+              MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous venez de recevoir un badge GOLD");
              pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Gold");
              }
              

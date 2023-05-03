@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+import org.controlsfx.control.Notifications;
 import service.PointVenteService;
 import service.VenteService;
 
@@ -125,8 +127,7 @@ public class ModifierVenteController implements Initializable {
             v.setId(AfficherVenteController.idVente);
             vs.ModifierVente(v);
             
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ajouter Avec Succés", ButtonType.OK);
-            alert.showAndWait();
+            Notifications.create().title("Sucess").text("Modifier Avec Succés").position(Pos.BOTTOM_RIGHT).showInformation();
             
             Parent root;
                try {
