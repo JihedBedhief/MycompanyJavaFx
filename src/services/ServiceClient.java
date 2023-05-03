@@ -21,7 +21,7 @@ import mycompany.database.Database;
 
 /**
  *
- * @author MediaCenter Zaghouan
+ * @author hassen
  */
 public class ServiceClient implements IServiceClient<Client>{
     

@@ -22,7 +22,7 @@ import mycompany.database.Database;
 
 /**
  *
- * @author MediaCenter Zaghouan
+ * @author hassen
  */
 public class ServiceAbonnement implements IServiceAbonnement<Abonnement> {
     
