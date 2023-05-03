@@ -27,7 +27,7 @@ public class Esprit extends Application {
     @Override
     public void start(Stage primaryStage) {
       try {
-            Parent root = FXMLLoader.load(getClass(). getResource("Produit.fxml"));
+            Parent root = FXMLLoader.load(getClass(). getResource("Category.fxml"));
             Scene scene = new Scene(root);
           
             
