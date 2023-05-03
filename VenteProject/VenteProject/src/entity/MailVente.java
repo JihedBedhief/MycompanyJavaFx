@@ -26,27 +26,33 @@ import javax.mail.internet.MimeMultipart;
  * @author aymen
  */
 public class MailVente {
-     public static void envoi(String rev,String Subjet , String Text) throws Exception
-    {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");  
-   LocalDateTime now = LocalDateTime.now();  
- //  System.out.println(dtf.format(now));  
-   String time = dtf.format(now);
-  
-     
-   char heure =  time.charAt(0);
-   char heure1 =  time.charAt(1);
-    int wa9t = Character.getNumericValue(heure)+Character.getNumericValue(heure1);
-   
-  
-          new Email("anas.basta@esprit.tn","ezpuhxfaqyuoeytg", rev, Subjet, "<h2 style=\"color: green;\" > Bonsoir, \n </h2> <h1 style=\"color: green;\" >"+Text+"\n </h1> <h2 style=\"color: green;\"> Merci pour vos efforts. </h2>"); // Send a message
+    public static void envoi(String rev, String subject, String text, String imageURL) throws Exception {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String time = dtf.format(now);
 
-   
+        char heure = time.charAt(0);
+        char heure1 = time.charAt(1);
+        int wa9t = Character.getNumericValue(heure) + Character.getNumericValue(heure1);
+
+        // Add the image to the email body
+        String imageHTML = "<img src=\"" + imageURL + "\" alt=\"badge\" style=\"width: 100px; height: 100px;\">";
+
+        // Build the email body
+        String body = "<h2 style=\"color: green;\">Bonsoir, </h2>"
+                + "<h1 style=\"color: green;\">" + text + "</h1>"
+                + "<h2 style=\"color: green;\">Merci pour vos efforts.</h2>"
+                + imageHTML;
+
+        // Send the email
+        new Email("anas.basta@esprit.tn", "ezpuhxfaqyuoeytg", rev, subject, body);
     }
+}
+
         
         
     
-}
+
 
 class Email
 {

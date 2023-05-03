@@ -20,7 +20,7 @@ public class VenteProject extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("/gui/AfficherPointVente.fxml"));
-       Parent root = FXMLLoader.load(getClass().getResource("/gui/AfficherVente.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/AfficherVente.fxml"));
           //Parent root = FXMLLoader.load(getClass().getResource("/gui/ShowPointVente.fxml"));
         Scene scene = new Scene(root);
         

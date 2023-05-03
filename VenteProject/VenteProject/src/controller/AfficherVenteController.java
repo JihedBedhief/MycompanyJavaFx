@@ -6,6 +6,7 @@
 package controller;
 
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -13,6 +14,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -182,7 +184,7 @@ public class AfficherVenteController implements Initializable {
 
     @FXML
     
-private void Pdf(ActionEvent event) throws FileNotFoundException, DocumentException, SQLDataException {
+private void Pdf(ActionEvent event) throws FileNotFoundException, DocumentException, SQLDataException, BadElementException, IOException {
 
     String file_name="C:\\Users\\MSI\\Desktop\\pdf\\pdfpayment.pdf";
     Document document = new Document();
@@ -216,8 +218,7 @@ for (Vente v : lisre) {
     total += v.getPrix_totale();
 }
 
-// Add table to document
-document.add(table);
+
 
 // Add total sum of prices
 Font font = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD, new BaseColor(0, 128, 0)); // définir la police en gras, taille 16 et couleur verte
@@ -228,8 +229,27 @@ paragraph.setSpacingBefore(10f); // ajouter 10 unités d'espace avant le texte
 paragraph.setIndentationLeft(50f); // ajouter une indentation gauche de 50 unités
 document.add(paragraph);
 
+// Load the logo image
+Image logo = Image.getInstance("C:\\Users\\MSI\\Desktop\\vente\\VenteProject/324943107_727844712198640_5952788068570103838_n.png");
+logo.scaleToFit(150, 150); // Resize the image to fit within a 100x100 rectangle
+
+
+// Add the logo to the document at the top left corner
+logo.setAbsolutePosition(document.left(), document.top());
+logo.setAbsolutePosition(document.left(), document.top() - 50);
+document.add(logo);
+
+// Add some space before the table
+table.setSpacingBefore(70f);
+
+// Add table to document
+document.add(table);
+
+
 document.close();
    
- }
+ 
+
+}
 
 }

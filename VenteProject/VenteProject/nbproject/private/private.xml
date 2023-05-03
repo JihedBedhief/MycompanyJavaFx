@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/AfficherVenteController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/service/PointVenteService.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/VenteItemController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/PointVenteItemController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/AjouterPointVenteController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/ShowPointVenteController.java</file>
             <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/Venteproject/VenteProject.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/ModifierVenteController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/AfficherPointVenteController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/ShowVenteController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/entity/Vente.java</file>
             <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/AjouterVenteController.java</file>
             <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/entity/MailVente.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/service/VenteService.java</file>
-            <file>file:/C:/Users/MSI/Desktop/vente/VenteProject/VenteProject/src/controller/ListViewVente.java</file>
         </group>
     </open-files>
 </project-private>

@@ -131,18 +131,27 @@ public class AjouterVenteController implements Initializable {
             vs.addVente(v);
             int c = vs.NombreVote((pv.getPointVenteByNom(checBox.getValue())).getId());
              
-             if (c >= 4 && c <6){
-             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Bronze");
-                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", " Vous venez de recevoir un badge Bronze");
-             }
-               if (c >= 6 && c<8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Silver"))){
-             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Silver");
-                         MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous venez de recevoir un badge Silver");
+             if (c >= 1 && c < 6) {
+    PointVente pointVente = pv.getPointVenteByNom(checBox.getValue());
+    String badgeName = "Bronze";
+    String imageURL = "https://scontent.xx.fbcdn.net/v/t1.15752-9/342507294_1398180647701334_7593626979564294399_n.jpg?stp=dst-jpg_s206x206&_nc_cat=111&ccb=1-7&_nc_sid=aee45a&_nc_ohc=Kp8O5Jz_bH0AX_2o0mE&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQdVdEFpleP-I912VI-O9TBjF7mIYGDoKCt3ghX0nLxcQ&oe=647A37BE"; // Replace with the actual image URL
 
-             }
-                 if (c >= 8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Gold"))){
-              MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous venez de recevoir un badge GOLD");
-             pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Gold");
+    // Update the badge for the point de vente
+    pv.ModifierBadge(pointVente, badgeName);
+
+    // Send an email to the point de vente with the badge and image
+    MailVente.envoi(pointVente.getEmail(), "Félicitations", "Vous venez de recevoir un badge " + badgeName + ".", imageURL);
+}
+
+             
+             //  if (c >= 6 && c<8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Silver"))){
+             //pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Silver");
+               //          MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous venez de recevoir un badge Silver");
+
+            // }
+              //   if (c >= 8 && !(pv.getPointVenteByNom(checBox.getValue()).getBadge().equals("Gold"))){
+              //MailVente.envoi((pv.getPointVenteByNom(checBox.getValue())).getEmail(), "felcitation", "Vous venez de recevoir un badge GOLD");
+             //pv.ModifierBadge((pv.getPointVenteByNom(checBox.getValue())),"Gold");
              }
              
             Notifications.create().title("Sucess").text("Ajouter Avec Succés").position(Pos.BOTTOM_RIGHT).showInformation();
@@ -172,4 +181,4 @@ public class AjouterVenteController implements Initializable {
         
     }
     
-}
+
