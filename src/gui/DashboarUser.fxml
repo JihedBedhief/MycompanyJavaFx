@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="621.0" prefWidth="999.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DashboarUserController">
+   <children>
+      <Pane prefHeight="621.0" prefWidth="254.0" style="-fx-background-color: #807282;">
+         <children>
+            <ImageView fx:id="img" fitHeight="93.0" fitWidth="70.0" layoutX="92.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/jimmy-fallon.png" />
+               </image></ImageView>
+            <Text layoutX="110.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" />
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="139.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/free-settings-icon-3110-thumb.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane layoutX="254.0" prefHeight="62.0" prefWidth="746.0">
+         <children>
+            <Label fx:id="bvn" layoutX="40.0" layoutY="21.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane" layoutX="200.0" layoutY="61.0" prefHeight="560.0" prefWidth="800.0">
+         <children>
+            <Text fill="#030303" layoutX="-33.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Account">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+         </children></Pane>
+   </children>
+</AnchorPane>
