@@ -6,9 +6,13 @@
 package controller;
 
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -216,7 +220,9 @@ for (Vente v : lisre) {
 document.add(table);
 
 // Add total sum of prices
-Paragraph paragraph = new Paragraph("Somme des Totales: " + total);
+Font font = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD, new BaseColor(0, 128, 0)); // définir la police en gras, taille 16 et couleur verte
+Chunk chunk = new Chunk("Totale des ventes: " + total + " DT", font); // appliquer les propriétés de la police à la variable
+Paragraph paragraph = new Paragraph(chunk);
 paragraph.setAlignment(Element.ALIGN_RIGHT); // aligner le texte à droite
 paragraph.setSpacingBefore(10f); // ajouter 10 unités d'espace avant le texte
 paragraph.setIndentationLeft(50f); // ajouter une indentation gauche de 50 unités
