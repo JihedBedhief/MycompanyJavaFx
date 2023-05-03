@@ -115,7 +115,7 @@ public class ContratFxmlController implements Initializable {
     
         public void sendsms(String code ){
     
-            Twilio.init(ACCOUNT_SID, AUTH_TOKEN2);
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+21698781664"),
                 new com.twilio.type.PhoneNumber("+17407167788"),
@@ -157,7 +157,7 @@ public class ContratFxmlController implements Initializable {
         message.saveChanges();
         try {
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", "pidevmycompany2023@gmail.com","guyuwthwzlzquasf");
+            transport.connect("smtp.gmail.com", "pidevmycompany2023@gmail.com","dsliqejzczcxqkxz");
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
                 
@@ -171,6 +171,51 @@ public class ContratFxmlController implements Initializable {
         JOptionPane.showMessageDialog(null, e);
     }  
 }
+    
+    //***********************************************************
+//    public void sendmail(){
+//       
+//           Properties props=new Properties();
+//        props.put("mail.smtp.host","smtp.gmail.com");
+//        props.put("mail.smtp.port",465);
+//        props.put("mail.smtp.user","pidevmycompany2023@gmail.com");
+//        props.put("mail.smtp.auth",true);
+//        props.put("mail.smtp.starttls.enable",true);
+//        props.put("mail.smtp.debug",true);
+//        props.put("mail.smtp.socketFactory.port",465);
+//        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//        props.put("mail.smtp.socketFactory.fallback",false); 
+//        
+//        try {             
+//                Session session = Session.getDefaultInstance(props, null);
+//                session.setDebug(true);
+//                MimeMessage message = new MimeMessage(session);
+//                message.setText("Your OTP is " + jTextField7.getText());
+//                message.setSubject("OTP For your Neftola Account");
+//                message.setFrom(new InternetAddress("pidevmycompany2023@gmail.com"));
+//                message.addRecipient(Message.RecipientType.TO, new InternetAddress(email.getText().trim()));
+//                message.saveChanges();
+//                try
+//                {
+//                Transport transport = session.getTransport("smtp");
+//                transport.connect("smtp.gmail.com","pidevmycompany2023@gmail.com","dsliqejzczcxqkxz");
+//                transport.sendMessage(message, message.getAllRecipients());
+//                transport.close();
+//                
+//            
+//                
+//                JOptionPane.showMessageDialog(null,"OTP has send to your Email id"); 
+//                }catch(Exception e)
+//                {
+//                    JOptionPane.showMessageDialog(null,"Please check your internet connection");
+//                }              
+//            
+//        } catch (Exception e) {
+//            e.printStackTrace();  
+//            JOptionPane.showMessageDialog(null,e);
+//        }  
+//       }
+    //***********************************************************
 
     
     
@@ -209,15 +254,25 @@ public class ContratFxmlController implements Initializable {
           Employees e = es.listerEmployeesparCin(cinfind);
           Contrat c = new Contrat(type,salary,localDateDebut,localDateFin,es.listerEmployeesparCin(cinfind));
           rec.ajouter_contrat(c);
-//          sendmail(e.getEmail(), c,e.getPrenom()); 
+          
+ 
+         
+         salairebtn.clear();
+         nomempbtn.setText("");
+         typebtn.setValue("");
+         datedhbtn.setValue(null);
+         datefbtn.setValue(null);
+         
+//                 sendmail(e.getEmail(), c,e.getPrenom());              
 //                 sendsms("sdsdsdsd");
+                 
                   Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 
                     //stage.close();
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeContrat.fxml")));       
                     stage.setScene(scene);
                     stage.setTitle("Listes des Contrats");
-     
+                    
                 }
                
     }

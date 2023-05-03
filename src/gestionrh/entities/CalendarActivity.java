@@ -11,42 +11,50 @@ package gestionrh.entities;
  *
  * @author SBS
  */
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 
 public class CalendarActivity {
-    private String clientName;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    
+    private String employeName;
+    private String activity;
+    private LocalDate endDate;
 
-    public CalendarActivity(String clientName, ZonedDateTime startDate, ZonedDateTime endDate) {
-        this.clientName = clientName;
-        this.startDate = startDate;
+    public CalendarActivity(String employeName, String activity, LocalDate endDate) {
+        this.employeName = employeName;
+        this.activity = activity;
         this.endDate = endDate;
     }
 
-    public String getClientName() {
-        return clientName;
+    public CalendarActivity() {
     }
 
-    public ZonedDateTime getStartDate() {
-        return startDate;
+    public String getEmployeName() {
+        return employeName;
     }
 
-    public ZonedDateTime getEndDate() {
+    public void setEmployeName(String employeName) {
+        this.employeName = employeName;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public void setStartDate(ZonedDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(ZonedDateTime endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-}
 
-  
+    @Override
+    public String toString() {
+        return "CalendarActivity{" + "employeName=" + employeName + ", activity=" + activity + ", endDate=" + endDate + '}';
+    }
+    
+}

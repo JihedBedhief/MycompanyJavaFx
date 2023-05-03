@@ -11,8 +11,6 @@ package gestionrh.gui;
  * and open the template in the editor.
  */
 
-
-
 import gestionrh.entities.CalendarActivity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,11 +42,7 @@ import java.time.LocalTime;
 
 import java.time.ZonedDateTime;
 import java.util.*;
-//import javax.persistence.EntityManager;
-//import javax.persistence.EntityManagerFactory;
-//import javax.persistence.Persistence;
-
-
+import javafx.scene.control.Button;
 
 public class CalendarController implements Initializable {
 
@@ -63,6 +57,8 @@ public class CalendarController implements Initializable {
 
     @FXML
     private FlowPane calendar;
+    @FXML
+    private Button retourbtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -145,20 +141,20 @@ public class CalendarController implements Initializable {
     private void createCalendarActivity(List<CalendarActivity> calendarActivities, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
         VBox calendarActivityBox = new VBox();
 for (int k = 0; k < calendarActivities.size(); k++) {
-    // Check if startDate is not null
-    if (calendarActivities.get(k).getStartDate() == null) {
+if (calendarActivities.get(k).getEndDate()== null) {
+
         continue;
     }
     if(k >= 2) {
         Text moreActivities = new Text("...");
         calendarActivityBox.getChildren().add(moreActivities);
         moreActivities.setOnMouseClicked(mouseEvent -> {
-            //On ... click print all activities for given date
             System.out.println(calendarActivities);
         });
         break;
     }
-    Text text = new Text(calendarActivities.get(k).getClientName() + ", " + calendarActivities.get(k).getStartDate().toLocalTime());
+
+Text text = new Text(calendarActivities.get(k).getEmployeName()+ ", " + calendarActivities.get(k).getEndDate() );
     calendarActivityBox.getChildren().add(text);
     text.setOnMouseClicked(mouseEvent -> {
         //On Text clicked
@@ -177,12 +173,12 @@ for (int k = 0; k < calendarActivities.size(); k++) {
     Map<Integer, List<CalendarActivity>> calendarActivityMap = new HashMap<>();
 
     for (CalendarActivity activity: calendarActivities) {
-        int activityDate = activity.getStartDate().getDayOfMonth();
+       int activityDate = activity.getEndDate().getDayOfMonth();
 
         if(!calendarActivityMap.containsKey(activityDate)){
             calendarActivityMap.put(activityDate, new ArrayList<>(Arrays.asList(activity)));
         } else {
-            List<CalendarActivity> oldListByDate = calendarActivityMap.get(activity.getStartDate().getDayOfMonth());
+            List<CalendarActivity> oldListByDate = calendarActivityMap.get(activity.getEndDate().getDayOfMonth());
 
 
             List<CalendarActivity> newList = new ArrayList<>(oldListByDate);
@@ -193,121 +189,6 @@ for (int k = 0; k < calendarActivities.size(); k++) {
     return  calendarActivityMap;
 }
 
-
-//private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime date) {
-//    Map<Integer, List<CalendarActivity>> calendarActivities = new HashMap<>();
-//    int year = date.getYear();
-//    int month = date.getMonthValue();
-//    Connection connection = null;
-//
-//    try {
-//        // Establish a connection to the MySQL database
-//        String url = "jdbc:mysql://localhost:3306/my_company";
-//        String user = "root";
-//        String password = "";
-//        connection = DriverManager.getConnection(url, user, password);
-//
-//        // Execute a query to retrieve the required data
-//        String query = "SELECT   c.datedebut, c.datefin, e.id, e.nom, e.prenom " +
-//                "FROM contrat c " +
-//                "JOIN employees e ON c.emp = e.id " +
-//                "WHERE YEAR(c.datedebut) = ? AND MONTH(c.datedebut) = ? OR YEAR(c.datefin) = ? AND MONTH(c.datefin) = ?";
-//
-//        PreparedStatement statement = connection.prepareStatement(query);
-//        statement.setInt(1, year);
-//        statement.setInt(2, month);
-//        statement.setInt(3, year);
-//        statement.setInt(4, month);
-//        
-//        ResultSet resultSet = statement.executeQuery();
-//
-//        // Process the result set and populate the calendar activities map
-//        while (resultSet.next()) {
-//            String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
-//            String dated= resultSet.getDate("datedebut") + " " + resultSet.getDate("datefin");
-//                      LocalDate startDate = resultSet.getDate("datedebut").toLocalDate();
-//                     LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
-//           CalendarActivity calendarActivity = new CalendarActivity(employeName, ZonedDateTime.of(startDate, LocalTime.MIDNIGHT, date.getZone()), ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
-//
-//   
-//
-//            for (LocalDate dateLocal = startDate; !dateLocal.isAfter(endDate); dateLocal = dateLocal.plusDays(1)) {
-//                int day = dateLocal.getDayOfMonth();
-//                List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
-//                activities.add(calendarActivity);
-//            }
-//        }
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    } finally {
-//        if (connection != null) {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    return calendarActivities;
-//}
-
-   
-//   private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime date) {
-//    Map<Integer, List<CalendarActivity>> calendarActivities = new HashMap<>();
-//    int year = date.getYear();
-//    int month = date.getMonthValue();
-//    Connection connection = null;
-//
-//    try {
-//        // Establish a connection to the MySQL database
-//        String url = "jdbc:mysql://localhost:3306/my_company";
-//        String user = "root";
-//        String password = "";
-//        connection = DriverManager.getConnection(url, user, password);
-//
-//        // Execute a query to retrieve the required data
-//        String query = "SELECT datefin, e.id, e.nom, e.prenom " +
-//                "FROM contrat c " +
-//                "JOIN employees e ON c.emp = e.id " +
-//                "WHERE YEAR(c.datedebut) = ? AND MONTH(c.datedebut) = ? OR YEAR(c.datefin) = ? AND MONTH(c.datefin) = ?";
-//
-//        PreparedStatement statement = connection.prepareStatement(query);
-//        statement.setInt(1, year);
-//        statement.setInt(2, month);
-//        statement.setInt(3, year);
-//        statement.setInt(4, month);
-//        
-//        ResultSet resultSet = statement.executeQuery();
-//
-//        // Process the result set and populate the calendar activities map
-//        while (resultSet.next()) {
-//            //String employeName = resultSet.getString("nom");
-//            String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
-//            LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
-//            CalendarActivity calendarActivity = new CalendarActivity(employeName, null, ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
-//
-//            int day = endDate.getDayOfMonth();
-//            List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
-//            activities.add(calendarActivity);
-//        }
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    } finally {
-//        if (connection != null) {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    return calendarActivities;
-//}
-//
-//}
-
 private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime date) {
     Map<Integer, List<CalendarActivity>> calendarActivities = new HashMap<>();
     int year = date.getYear();
@@ -315,14 +196,14 @@ private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDat
     Connection connection = null;
 
     try {
-        // Establish a connection to the MySQL database
+        
         String url = "jdbc:mysql://localhost:3306/my_company";
         String user = "root";
         String password = "";
         connection = DriverManager.getConnection(url, user, password);
 
         // Execute a query to retrieve the required data
-        String query = "SELECT datefin, e.id, e.nom, e.prenom " +
+        String query = "SELECT datefin, e.id, e.nom, e.prenom , c.emp " +
                 "FROM contrat c " +
                 "JOIN employees e ON c.emp = e.id " +
                 "WHERE YEAR(c.datedebut) = ? AND MONTH(c.datedebut) = ? OR YEAR(c.datefin) = ? AND MONTH(c.datefin) = ?";
@@ -334,17 +215,16 @@ private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDat
         statement.setInt(4, month);
         
         ResultSet resultSet = statement.executeQuery();
+while (resultSet.next()) {
+    String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
+    LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
+    System.out.println(employeName + " : " + endDate);
+    CalendarActivity calendarActivity = new CalendarActivity(employeName, null,endDate );
+    int day = endDate.getDayOfMonth();
+    List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
+    activities.add(calendarActivity);
+}
 
-        // Process the result set and populate the calendar activities map
-        while (resultSet.next()) {
-            String employeName = resultSet.getString("nom") + " " + resultSet.getString("prenom");
-            LocalDate endDate = resultSet.getDate("datefin").toLocalDate();
-            CalendarActivity calendarActivity = new CalendarActivity(employeName, null, ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, date.getZone()).plusDays(1).minusNanos(1));
-
-            int day = endDate.getDayOfMonth();
-            List<CalendarActivity> activities = calendarActivities.computeIfAbsent(day, k -> new ArrayList<>());
-            activities.add(calendarActivity);
-        }
     } catch (SQLException e) {
         e.printStackTrace();
     } finally {
@@ -359,6 +239,19 @@ private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDat
 
     return calendarActivities;
 }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        
+         Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow(); 
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeContrat.fxml")));       
+                    stage.setScene(scene);
+                    stage.setTitle("");
+                    
+                    stage.show();  
+    }
 }
 
 
