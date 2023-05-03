@@ -41,7 +41,7 @@ import utils.SMS;
 /**
  * FXML Controller class
  *
- * @author MediaCenter Zaghouan
+ * @author hassen
  */
 public class ForgetpasswordController implements Initializable {
 
