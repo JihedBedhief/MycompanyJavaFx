@@ -137,7 +137,9 @@ public class StatistiqueController implements Initializable {
            public void buildData2(){
                
             
-             
+                /**
+
+     */
           data2 = FXCollections.observableArrayList();
     
        java.sql.Connection cnx;
