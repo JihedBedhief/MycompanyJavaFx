@@ -441,4 +441,12 @@ public class ProduitController implements Initializable {
 //        System.out.println(stars);
 //    }
 
+    @FXML
+    private void Rate(MouseEvent event) {
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+    }
+
 }

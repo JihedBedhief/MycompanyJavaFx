@@ -39,5 +39,6 @@
       <ImageView fx:id="img" fitHeight="156.0" fitWidth="211.0" layoutX="239.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
       <Rating fx:id="stars" layoutX="220.0" layoutY="433.0" onMouseClicked="#Rate" />
       <Button layoutX="448.0" layoutY="434.0" mnemonicParsing="false" onAction="#Rate" text="Submit" />
+       <Button layoutX="526.0" layoutY="368.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
    </children>
 </AnchorPane>
