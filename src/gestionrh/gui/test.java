@@ -30,6 +30,7 @@ public class test extends Application {
             Parent root = FXMLLoader.load(getClass(). getResource("ListeEmployeefxml.fxml"));
             Scene scene = new Scene(root);
           
+            //primaryStage.setFullScreen(true);
             
 
         //sorry about that - Windows defender issue.

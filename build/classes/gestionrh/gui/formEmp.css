@@ -1,32 +1,70 @@
-#AnchorPane {
-    -fx-background-color: #f2f2f2; /* Sets the background color of the AnchorPane */
+/* Définition du style pour les boutons 41-43 */
+.button {
+  -fx-padding: 10px 25px;
+  -fx-font-family: "Roboto", sans-serif;
+  -fx-font-weight: 500;
+  -fx-background-color: transparent;
+/*  -fx-border-color: #4CAF50;#1b2f31*/
+ -fx-border-color:#1b2f31;
+  -fx-border-width: 2px;
+  -fx-outline: none;
+  -fx-cursor: hand;
+  -fx-transition: all 0.3s ease;
+  -fx-position: relative;
+  -fx-display: inline-block;
 }
 
-Label {
-    -fx-font-weight: bold; /* Makes all labels bold */
+/* Définition du style pour le bouton 42 */
+.button {
+  -fx-border-color: #fff;
+  -fx-border-width: 2px;
+  -fx-z-index: 1;
+  -fx-text-fill: #fff;
 }
 
-TextField {
-    -fx-background-color: #fff; /* Sets the background color of text fields to white */
-    -fx-border-color: #ccc; /* Sets the border color of text fields to light gray */
-    -fx-border-width: 1px; /* Sets the border width of text fields to 1px */
-    -fx-border-radius: 3px; /* Sets the border radius of text fields to 3px */
+.button:after {
+  -fx-position: absolute;
+  -fx-content: "";
+  -fx-background-color: #fff;
+  -fx-width: 100%;
+  -fx-height: 0;
+  -fx-bottom: 0;
+  -fx-left: 0;
+  -fx-z-index: -1;
+  -fx-transition: all 0.3s ease;
 }
 
-ComboBox {
-    -fx-background-color: #fff; /* Sets the background color of combo boxes to white */
-    -fx-border-color: #ccc; /* Sets the border color of combo boxes to light gray */
-    -fx-border-width: 1px; /* Sets the border width of combo boxes to 1px */
-    -fx-border-radius: 3px; /* Sets the border radius of combo boxes to 3px */
+.button:hover {
+  -fx-text-fill: #000;
 }
 
-Button {
-    -fx-background-color: #4CAF50; /* Sets the background color of buttons to green */
-    -fx-text-fill: #fff; /* Sets the text color of buttons to white */
-    -fx-border-radius: 3px; /* Sets the border radius of buttons to 3px */
-    -fx-padding: 8px 16px; /* Sets the padding of buttons to 8px on top/bottom and 16px on left/right */
+.button:hover:after {
+  -fx-top: 0;
+  -fx-height: 100%;
 }
 
-Button:hover {
-    -fx-background-color: #3e8e41; /* Sets the background color of buttons to dark green on hover */
+.button:pressed {
+  -fx-top: 2px;
+}
+
+                
+  .label {
+  -fx-padding: 10 25 10 25;
+  -fx-font-family: "Roboto";
+  -fx-font-weight: 500;
+  -fx-text-fill: #B4886B;
+  -fx-background-color: transparent;
+  -fx-border-color: #fff;
+  -fx-border-width: 2px;
+  -fx-cursor: hand;
+  -fx-transition: all 0.3s ease;
+  -fx-position: relative;
+}
+
+.label:hover {
+  -fx-text-fill: #000;
+}
+
+.label:active {
+  -fx-translate-y: 2px;
 }

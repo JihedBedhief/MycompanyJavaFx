@@ -108,27 +108,33 @@ public class ContratFxmlController implements Initializable {
         
             
     }    
-    
-      public static final String ACCOUNT_SID = "AC75038046937bd10e2a96db08e57129da";
-    public static final String AUTH_TOKEN = "35cd0e2c6b64d006d5ed1532126d8f07";
-    public static final String AUTH_TOKEN2 = "cd6dddaf3a44d9ad5613bf197048b56f";
-    
-        public void sendsms(String code ){
-    
-            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(
-                new com.twilio.type.PhoneNumber("+21698781664"),
-                new com.twilio.type.PhoneNumber("+17407167788"),
-                code)
-            .create();
+//    public static final String ACCOUNT_SID = "AC75038046937bd10e2a96db08e57129da";
+//public static final String AUTH_TOKEN = "35cd0e2c6b64d006d5ed1532126d8f07";
+//
+//public void sendsms(String code) {
+//    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+//    Message message = Message.creator(
+//        new com.twilio.type.PhoneNumber("+21698781664"),
+//        new com.twilio.type.PhoneNumber("+17407167788"),
+//        code).create();
+//    System.out.println(message.getSid());
+//}
 
-        System.out.println(message.getSid());
-
-        
-    
-    
-    
-    }
+//      public static final String ACCOUNT_SID = "AC75038046937bd10e2a96db08e57129da";
+//    public static final String AUTH_TOKEN = "35cd0e2c6b64d006d5ed1532126d8f07";
+//    public static final String AUTH_TOKEN2 = "0c34bfdce9b889720fa893e515920746";
+//    
+//        public void sendsms(String code ){
+//    
+//            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+//        Message message = Message.creator(
+//                new com.twilio.type.PhoneNumber("+21698781664"),
+//                new com.twilio.type.PhoneNumber("+17407167788"),
+//                code).create();
+//
+//        System.out.println(message.getSid());
+//    
+//    }
     
     
    
@@ -257,14 +263,14 @@ public class ContratFxmlController implements Initializable {
           
  
          
-         salairebtn.clear();
-         nomempbtn.setText("");
-         typebtn.setValue("");
-         datedhbtn.setValue(null);
-         datefbtn.setValue(null);
+//         salairebtn.clear();
+//         nomempbtn.setText("");
+//         typebtn.setValue("");
+//         datedhbtn.setValue(null);
+//         datefbtn.setValue(null);
          
                  sendmail(e.getEmail(), c,e.getPrenom());              
-                // sendsms("sdsdsdsd");
+             //    sendsms("sdsdsdsd");
                  
                   Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 

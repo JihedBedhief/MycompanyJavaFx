@@ -5,40 +5,41 @@
  */
 package gestionrh.gui;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import gestionrh.entities.Contrat;
-import gestionrh.entities.Employees;
 import gestionrh.services.ContratService;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.print.PageLayout;
-import javafx.print.PageOrientation;
-import javafx.print.Paper;
-import javafx.print.Printer;
-import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.sql.SQLDataException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -109,41 +110,60 @@ public class ContratdetailController implements Initializable {
 //   
 //    }
 @FXML
-private void Imprimer(ActionEvent event) {
-    try {
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
-        
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
-        contentStream.beginText();
-                     
-        //contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
-        contentStream.newLineAtOffset(100, 700);
-        contentStream.showText("Employee: " + empbtn.getText());
-        contentStream.newLineAtOffset(0, -20);
-        contentStream.showText("Type: " + typebtn.getText());
-        contentStream.newLineAtOffset(0, -20);
-        contentStream.showText("Salaire: " + salairebtn.getText());
-        contentStream.newLineAtOffset(0, -20);
-        contentStream.showText("Date de debut: " + datedbtn.getText());
-        contentStream.newLineAtOffset(0, -20);
-        contentStream.showText("Date de fin: " + datefbtn.getText());
-        contentStream.endText();
-        contentStream.close();
-        
-        // Save the PDF document
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save PDF");
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("PDF Files", "*.pdf"));
-        File file = fileChooser.showSaveDialog(pane.getScene().getWindow());
-        if (file != null) {
-            document.save(file);
-            document.close();
-        }
-    } catch (IOException ex) {
-        ex.printStackTrace();
-    }
+private void Imprimer(ActionEvent event) throws FileNotFoundException, DocumentException, MalformedURLException, BadElementException, IOException {
+   String file_name="C:\\Users\\derou\\Desktop\\Pdf\\document.pdf";
+    Document document = new Document();
+
+    PdfWriter.getInstance(document, new FileOutputStream(file_name));
+    document.open();
+    List<Contrat> liste = new ArrayList<>();
+    liste = rec.listerContrats();
+
+    // Define table with 5 columns
+PdfPTable table = new PdfPTable(4);
+table.setWidthPercentage(100); // définir la largeur de la table à 100% de la page
+
+// Add table headers
+table.addCell("Nom");
+table.addCell("Type");
+table.addCell("Salaire");
+table.addCell("Date debut");
+table.addCell("Date fin");
+
+// Add data to table
+for (Contrat v : liste) {
+    table.addCell(v.getEmp().getNom());
+    table.addCell(String.valueOf(v.getType()));
+    table.addCell(String.valueOf(v.getSalaire()));
+    table.addCell(String.valueOf(v.getDatedebut()));
+    table.addCell(String.valueOf(v.getDatefin()));
+}
+
+
+
+
+
+
+// Load the logo image from URL
+Image logo = Image.getInstance(new URL("https://scontent.xx.fbcdn.net/v/t1.15752-9/324943107_727844712198640_5952788068570103838_n.png?_nc_cat=101&ccb=1-7&_nc_sid=aee45a&_nc_ohc=L9r2DUjzChgAX9h2-di&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQx9hfEknVIywvznUHzX-TMK_bMzU_NHPwzQhB1a_lbUQ&oe=647A5B3D"));
+logo.scaleToFit(150, 150); // Resize the image to fit within a 100x100 rectangle
+
+// Add the logo to the document at the top left corner
+logo.setAbsolutePosition(document.left(), document.top() - 50);
+document.add(logo);
+
+// Add some space before the table
+table.setSpacingBefore(70f);
+
+
+// Add table to document
+document.add(table);
+
+
+document.close();
+   
+ 
+
 }
 
     @FXML
@@ -158,4 +178,6 @@ private void Imprimer(ActionEvent event) {
                     
                     stage.show();  
     }
+    
+   
 }

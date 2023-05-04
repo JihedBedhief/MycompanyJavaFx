@@ -1,5 +1,7 @@
 #AnchorPane {
-    -fx-background-color: #f2f2f2;
+/*    -fx-background-color: #f2f2f2;*/
+    
+     -fx-background-color: whitesmoke;
 }
 
 Label {
@@ -16,9 +18,20 @@ ComboBox {
 }
 
 Button {
-    -fx-font-size: 14pt;
+/*    -fx-font-size: 14pt;
     -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
+    -fx-text-fill: white;*/
+   -fx-background-color: #1b2f31; 
+
+                -fx-border-radius: 50px; 
+               -fx-display: flex; 
+                -fx-justify-content: center; 
+                -fx-align-items: center; 
+                -fx-height: 3em; 
+                -fx-width: 8em; 
+                -fx-font-size: large; 
+                -fx-font-weight: 600; 
+                -fx-text-fill: #1cc49d;
 }
 
 #ajoutebtn {
@@ -30,6 +43,44 @@ Button {
 }
 
 Text {
-    -fx-font-size: 18pt;
+    -fx-font-size: 24pt;
     -fx-fill: #333;
 }
+
+
+
+
+/**********************************/
+/*.table-view {
+    -fx-background-color: #F5F5F5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: windowframe;
+}
+
+.table-view .column-header {
+    -fx-background-color: wheat;
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-font-size: 9px;
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+}
+
+.table-view .cell {
+    -fx-alignment: CENTER;
+    -fx-font-size: 9px;
+    -fx-padding: 5px 10px;
+}
+
+.table-view .row-cell:odd {
+    -fx-background-color: #EAEAEA;
+}
+
+.table-view .row-cell:hover {
+    -fx-background-color: #D4D4D4;
+}*/
+
+
+

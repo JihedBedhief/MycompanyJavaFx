@@ -7,29 +7,30 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.EmployeefxmlController">
+<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.EmployeefxmlController">
    <children>
-      <Label layoutX="33.0" layoutY="35.0" text="Cin" />
-      <Label layoutX="35.0" layoutY="75.0" text="Nom" />
-      <Label layoutX="33.0" layoutY="111.0" text="Prenom" />
-      <Label layoutX="33.0" layoutY="267.0" text="Email" />
-      <Label layoutX="31.0" layoutY="306.0" text="Phone num" />
-      <TextField fx:id="cinbtn" layoutX="160.0" layoutY="29.0" />
-      <TextField fx:id="nimbtn" layoutX="160.0" layoutY="69.0" />
-      <TextField fx:id="prenombtn" layoutX="160.0" layoutY="105.0" />
-      <TextField fx:id="emailbtn" layoutX="160.0" layoutY="261.0" />
-      <TextField fx:id="phonenumbtn" layoutX="160.0" layoutY="300.0" />
-      <Button fx:id="ajoutebtn" layoutX="179.0" layoutY="359.0" mnemonicParsing="false" onAction="#ajoute" text="ajouter" />
-      <Button fx:id="retourbtn" layoutX="275.0" layoutY="359.0" mnemonicParsing="false" onAction="#retour" text="retour" />
-      <Label layoutX="32.0" layoutY="148.0" text="formationA" />
-      <Label layoutX="35.0" layoutY="186.0" text="FormationP" />
-      <Label layoutX="34.0" layoutY="226.0" text="Experience" />
-      <ComboBox fx:id="formationabtn" layoutX="158.0" layoutY="142.0" prefHeight="39.0" prefWidth="231.0" />
-      <ComboBox fx:id="formationpbtn" layoutX="158.0" layoutY="180.0" prefHeight="39.0" prefWidth="231.0" />
-      <ComboBox fx:id="experiencebtn" layoutX="158.0" layoutY="220.0" prefHeight="39.0" prefWidth="231.0" />
+      <Label layoutX="67.0" layoutY="42.0" text="Cin" />
+      <Label layoutX="68.0" layoutY="97.0" text="Nom" />
+      <Label layoutX="67.0" layoutY="148.0" text="Prenom" />
+      <Label layoutX="67.0" layoutY="351.0" text="Email" />
+      <Label layoutX="67.0" layoutY="403.0" text="Phone num" />
+      <TextField fx:id="cinbtn" layoutX="285.0" layoutY="42.0" />
+      <TextField fx:id="nimbtn" layoutX="286.0" layoutY="91.0" />
+      <TextField fx:id="prenombtn" layoutX="285.0" layoutY="142.0" />
+      <TextField fx:id="emailbtn" layoutX="286.0" layoutY="345.0" />
+      <TextField fx:id="phonenumbtn" layoutX="286.0" layoutY="397.0" />
+      <Button fx:id="ajoutebtn" layoutX="243.0" layoutY="459.0" mnemonicParsing="false" onAction="#ajoute" text="ajouter" />
+      <Button fx:id="retourbtn" layoutX="479.0" layoutY="459.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+      <Label layoutX="68.0" layoutY="199.0" text="formationA" />
+      <Label layoutX="67.0" layoutY="250.0" text="FormationP" />
+      <Label layoutX="67.0" layoutY="300.0" text="Experience" />
+      <ComboBox fx:id="formationabtn" layoutX="285.0" layoutY="193.0" prefHeight="39.0" prefWidth="231.0" />
+      <ComboBox fx:id="formationpbtn" layoutX="285.0" layoutY="244.0" prefHeight="39.0" prefWidth="231.0" />
+      <ComboBox fx:id="experiencebtn" layoutX="285.0" layoutY="294.0" prefHeight="39.0" prefWidth="231.0" />
    </children>
    <stylesheets>
-      <URL value="@listeEmploye.css" />
+      
+      <URL value="@formEmp.css" />
       <URL value="@listeEmploye.css" />
    </stylesheets>
 </AnchorPane>
