@@ -13,7 +13,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -42,7 +41,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import service.PointVenteService;
 import service.VenteService;
 
 /**
@@ -229,18 +227,17 @@ paragraph.setSpacingBefore(10f); // ajouter 10 unités d'espace avant le texte
 paragraph.setIndentationLeft(50f); // ajouter une indentation gauche de 50 unités
 document.add(paragraph);
 
-// Load the logo image
-Image logo = Image.getInstance("C:\\Users\\MSI\\Desktop\\vente\\VenteProject/324943107_727844712198640_5952788068570103838_n.png");
+// Load the logo image from URL
+Image logo = Image.getInstance(new URL("https://scontent.xx.fbcdn.net/v/t1.15752-9/324943107_727844712198640_5952788068570103838_n.png?_nc_cat=101&ccb=1-7&_nc_sid=aee45a&_nc_ohc=L9r2DUjzChgAX9h2-di&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQx9hfEknVIywvznUHzX-TMK_bMzU_NHPwzQhB1a_lbUQ&oe=647A5B3D"));
 logo.scaleToFit(150, 150); // Resize the image to fit within a 100x100 rectangle
 
-
 // Add the logo to the document at the top left corner
-logo.setAbsolutePosition(document.left(), document.top());
 logo.setAbsolutePosition(document.left(), document.top() - 50);
 document.add(logo);
 
 // Add some space before the table
 table.setSpacingBefore(70f);
+
 
 // Add table to document
 document.add(table);
