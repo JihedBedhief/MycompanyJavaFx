@@ -12,12 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="pagination" prefHeight="400.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ListeEmployeeFXMLController">
+<AnchorPane id="AnchorPane" fx:id="pagination" prefHeight="400.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ListeEmployeeFXMLController">
    <!-- <stylesheets>
         <URL value="@calendar.css" />
     </stylesheets>-->
     <children>
-      <TableView fx:id="tableEmp" layoutX="9.0" layoutY="73.0" prefHeight="317.0" prefWidth="611.0">
+      <TableView fx:id="tableEmp" layoutX="9.0" layoutY="73.0" prefHeight="317.0" prefWidth="636.0">
         <columns>
           <TableColumn fx:id="nombtn" prefWidth="75.0" text="nom" />
             <TableColumn fx:id="prenombtn" prefWidth="75.0" text="prenom" />

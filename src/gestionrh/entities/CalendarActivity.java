@@ -28,6 +28,11 @@ public class CalendarActivity {
     public CalendarActivity() {
     }
 
+    public CalendarActivity(String employeName) {
+        this.employeName = employeName;
+    }
+    
+
     public String getEmployeName() {
         return employeName;
     }

@@ -9,23 +9,23 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@listeEmploye.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ListeContratController">
    <children>
-      <TableView fx:id="contrattab" layoutX="185.0" layoutY="39.0" prefHeight="301.0" prefWidth="401.0">
+      <TableView fx:id="contrattab" layoutX="110.0" layoutY="42.0" prefHeight="301.0" prefWidth="470.0">
         <columns>
-          <TableColumn fx:id="typebtn" prefWidth="75.0" text="Type" />
-          <TableColumn fx:id="salairebtn" prefWidth="75.0" text="Salaire" />
-            <TableColumn fx:id="datedbtn" prefWidth="75.0" text="Date debut" />
-            <TableColumn fx:id="datefbtn" prefWidth="75.0" text="Date fin" />
-            <TableColumn fx:id="empbtn" prefWidth="75.0" text="employe" />
+          <TableColumn fx:id="typebtn" prefWidth="94.00003051757812" text="Type" />
+          <TableColumn fx:id="salairebtn" prefWidth="86.66668701171875" text="Salaire" />
+            <TableColumn fx:id="datedbtn" prefWidth="110.6666259765625" text="Date debut" />
+            <TableColumn fx:id="datefbtn" prefWidth="85.33331298828125" text="Date fin" />
+            <TableColumn fx:id="empbtn" prefWidth="96.0" text="employe" />
         </columns>
       </TableView>
-      <Button fx:id="supprimerbtn" layoutX="474.0" layoutY="353.0" mnemonicParsing="false" onAction="#suprimer" text="Supprimer" />
-      <Button fx:id="modifierbtn" layoutX="369.0" layoutY="353.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
-      <CheckBox fx:id="cdi" layoutX="26.0" layoutY="57.0" mnemonicParsing="false" onAction="#bien" text="CDI" />
-      <CheckBox fx:id="civp" layoutX="116.0" layoutY="57.0" mnemonicParsing="false" onAction="#resolu" text="CIVP" />
+      <Button fx:id="supprimerbtn" layoutX="468.0" layoutY="353.0" mnemonicParsing="false" onAction="#suprimer" text="Supprimer" />
+      <Button fx:id="modifierbtn" layoutX="345.0" layoutY="353.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <CheckBox fx:id="cdi" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" onAction="#bien" text="CDI" />
+      <CheckBox fx:id="civp" layoutX="63.0" layoutY="57.0" mnemonicParsing="false" onAction="#resolu" text="CIVP" />
       <Button fx:id="retourbtn" layoutX="6.0" layoutY="353.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
       
-      <Button fx:id="detailbtn" layoutX="284.0" layoutY="353.0" mnemonicParsing="false" onAction="#Detail" text="Detail" />
-      <Button layoutX="185.0" layoutY="353.0" mnemonicParsing="false" onAction="#Calendar" text="Calendar" />
+      <Button fx:id="detailbtn" layoutX="237.0" layoutY="353.0" mnemonicParsing="false" onAction="#Detail" text="Detail" />
+      <Button layoutX="110.0" layoutY="353.0" mnemonicParsing="false" onAction="#Calendar" text="Calendar" />
    </children>
    <opaqueInsets>
       <Insets />

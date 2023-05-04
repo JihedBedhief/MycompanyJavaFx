@@ -263,8 +263,8 @@ public class ContratFxmlController implements Initializable {
          datedhbtn.setValue(null);
          datefbtn.setValue(null);
          
-//                 sendmail(e.getEmail(), c,e.getPrenom());              
-//                 sendsms("sdsdsdsd");
+                 sendmail(e.getEmail(), c,e.getPrenom());              
+                // sendsms("sdsdsdsd");
                  
                   Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow(); 

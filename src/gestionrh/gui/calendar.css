@@ -1,7 +1,38 @@
-/*
- * Empty Stylesheet file.
- */
+/* Set background color for entire AnchorPane */
+.anchor-pane {
+    -fx-background-color: #f2fafc;
+}
 
-.mainFxmlClass {
+/* Set font size and color for month and year text */
+.text {
+    -fx-font-size: 15px;
+    -fx-fill: #000;
+}
 
+/* Set font size and color for day of week text */
+.hbox > .text {
+    -fx-font-size: 16px;
+    -fx-fill: #000;
+}
+
+/* Set background color and border for calendar cells */
+.flow-pane > .button {
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+}
+
+/* Set hover effects for calendar cells */
+.flow-pane > .button:hover {
+    -fx-background-color: #eee;
+}
+
+/* Set selected date effect for calendar cells */
+.flow-pane > .button:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #fff;
+}
+
+/* Set disabled date effect for calendar cells */
+.flow-pane > .button:disabled {
+    -fx-opacity: 0.5;
 }
