@@ -52,6 +52,7 @@ import javafx.util.Duration;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.Rating;
+
 import services.ServiceCategory;
 import services.ServiceProduit;
 
@@ -460,5 +461,44 @@ public class ProduitController implements Initializable {
     @FXML
     private void retour(ActionEvent event) {
     }
+
+    @FXML
+    private void chercher(ActionEvent event) {
+        Produit f = new Produit();
+      
+         name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        desc.setCellValueFactory(new PropertyValueFactory<>("description"));
+       
+    Chercheprod = prod.RecupBase2();
+    tab.setItems(prod.RecupBase2());
+    FilteredList<Produit> filtreddata;
+     filtreddata = new FilteredList<>(Chercheprod ,b ->true);
+    recherche.textProperty().addListener((observable,oldValue,newValue)->{
+      filtreddata.setPredicate((u  ->  {
+          
+          if((newValue ==null) || newValue.isEmpty())
+          { return true;}
+      
+      String lowerCaseFilter = newValue.toLowerCase();
+      if (u.getName().toLowerCase().contains(lowerCaseFilter)){
+      return true;
+      } else if (u.getDescription().toLowerCase().contains(lowerCaseFilter))
+          {return true;}
+        
+     
+        
+      return false;
+      })); 
+    });
+    
+    SortedList<Produit> srt = new SortedList<>(filtreddata);
+    srt.comparatorProperty().bind(tab.comparatorProperty());
+    tab.setItems(srt);
+    }
+    
+//    User user;
+//    public void setUser(User user) {
+//
+//        this.user = user;}
 
 }
