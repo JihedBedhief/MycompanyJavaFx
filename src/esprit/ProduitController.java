@@ -28,6 +28,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
@@ -47,7 +48,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 import org.controlsfx.control.Rating;
 import services.ServiceCategory;
 import services.ServiceProduit;
@@ -310,7 +313,7 @@ public class ProduitController implements Initializable {
            EnregistrerVersBase();
            table();
 //           JOptionPane.showMessageDialog(null,"Account created successfully");
-
+       notif1("Produit", "Ajouter avec succes");
           
            
           
@@ -321,7 +324,16 @@ public class ProduitController implements Initializable {
        
         
     }
-    
+    public void notif1(String title, String text) {
+        Image img = new Image("/esprit/logo1.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title(title)
+                .text(text)
+                .graphic(new ImageView(img))
+                .hideAfter(Duration.seconds(10))
+                .position(Pos.BOTTOM_RIGHT);
+        notificationBuilder.show();
+    }
     
        public void ChercheFichier(){
       Produit f = new Produit();
