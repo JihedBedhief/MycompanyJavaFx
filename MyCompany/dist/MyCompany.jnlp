@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="MyCompany.jnlp">
+  <information>
+    <title>MyCompany</title>
+    <vendor>user</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="MyCompany.jar" size="746257" download="eager" />
+    <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
+    <jar href="lib\TrayTester.jar" size="52070" download="eager" />
+    <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
+    <jar href="lib\commons-io-2.7.jar" size="276413" download="eager" />
+    <jar href="lib\commons-logging-1.2.1.1.jar" size="60686" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\controlsfx-samples-8.40.11.jar" size="535604" download="eager" />
+    <jar href="lib\derby.jar" size="2766479" download="eager" />
+    <jar href="lib\derbyclient.jar" size="576624" download="eager" />
+    <jar href="lib\derbynet.jar" size="248898" download="eager" />
+    <jar href="lib\fontawesomefx-8.0.8.jar" size="118727" download="eager" />
+    <jar href="lib\fontawesomefx-commons-9.1.2.jar" size="24064" download="eager" />
+    <jar href="lib\fontawesomefx-fontawesome-4.7.0-9.1.2.jar" size="137226" download="eager" />
+    <jar href="lib\fontawesomefx-materialdesignfont-2.0.26-9.1.2.jar" size="230736" download="eager" />
+    <jar href="lib\fontbox-2.0.3.jar" size="1477680" download="eager" />
+    <jar href="lib\fxsampler-1.0.11.jar" size="27612" download="eager" />
+    <jar href="lib\hamcrest-core-1.3.jar" size="45024" download="eager" />
+    <jar href="lib\httpclient-4.5.13.jar" size="780321" download="eager" />
+    <jar href="lib\httpcore-4.4.13.jar" size="328593" download="eager" />
+    <jar href="lib\itextpdf-5.5.9.jar" size="2287148" download="eager" />
+    <jar href="lib\jackson-annotations-2.14.0.jar" size="76091" download="eager" />
+    <jar href="lib\jackson-core-2.14.0.jar" size="458975" download="eager" />
+    <jar href="lib\jackson-databind-2.14.0.jar" size="1618273" download="eager" />
+    <jar href="lib\jackson-dataformat-xml-2.14.0.jar" size="130374" download="eager" />
+    <jar href="lib\jackson-datatype-jsr310-2.14.0.jar" size="122014" download="eager" />
+    <jar href="lib\javax.mail-1.6.2.jar" size="659031" download="eager" />
+    <jar href="lib\jcommon-1.0.23.jar" size="330246" download="eager" />
+    <jar href="lib\jfreechart-1.0.19-demo.jar" size="1437338" download="eager" />
+    <jar href="lib\jfreechart-1.0.19-experimental.jar" size="13796" download="eager" />
+    <jar href="lib\jfreechart-1.0.19-swt.jar" size="79793" download="eager" />
+    <jar href="lib\jfreechart-1.0.19.jar" size="1570157" download="eager" />
+    <jar href="lib\jfreechart-1.5.4.jar" size="1643790" download="eager" />
+    <jar href="lib\jfreesvg-2.0.jar" size="50769" download="eager" />
+    <jar href="lib\jjwt-api-0.11.2.jar" size="78784" download="eager" />
+    <jar href="lib\jjwt-impl-0.11.2.jar" size="78853" download="eager" />
+    <jar href="lib\jjwt-jackson-0.11.2.jar" size="8400" download="eager" />
+    <jar href="lib\json-20220320.jar" size="70939" download="eager" />
+    <jar href="lib\junit-4.11.jar" size="245039" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.19.jar" size="2356711" download="eager" />
+    <jar href="lib\orsoncharts-1.4-eval-nofx.jar" size="445025" download="eager" />
+    <jar href="lib\orsonpdf-1.6-eval.jar" size="72444" download="eager" />
+    <jar href="lib\pdfbox-2.0.3.jar" size="2441253" download="eager" />
+    <jar href="lib\poi-examples-5.2.3.jar" size="388829" download="eager" />
+    <jar href="lib\poi-excelant-5.2.3.jar" size="28800" download="eager" />
+    <jar href="lib\poi-ooxml-5.2.3.jar" size="2010497" download="eager" />
+    <jar href="lib\poi-ooxml-lite-5.2.3.jar" size="5898622" download="eager" />
+    <jar href="lib\poi-scratchpad-5.2.3.jar" size="1897121" download="eager" />
+    <jar href="lib\protobuf-java-3.6.1.jar" size="1421323" download="eager" />
+    <jar href="lib\servlet.jar" size="80054" download="eager" />
+    <jar href="lib\slf4j-api-1.7.30.jar" size="41472" download="eager" />
+    <jar href="lib\stax2-api-4.2.1.jar" size="195909" download="eager" />
+    <jar href="lib\swtgraphics2d.jar" size="17492" download="eager" />
+    <jar href="lib\twilio-9.5.0.jar" size="4924532" download="eager" />
+    <jar href="lib\woodstox-core-6.4.0.jar" size="1586060" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="MyCompany" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="gui.MyCompany"  name="MyCompany" />
+  <update check="always"/>
+</jnlp>
