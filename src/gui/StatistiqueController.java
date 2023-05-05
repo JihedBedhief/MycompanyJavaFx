@@ -48,15 +48,15 @@ public class StatistiqueController implements Initializable {
     private Label label1;
     @FXML
     private Label label2;
-     public StatistiqueController(){
+
+    public StatistiqueController() {
         Connection cnx = Database.getInstance().getCnx();
     }
-       private ObservableList data;
-              private ObservableList data2;
+    private ObservableList data;
+    private ObservableList data2;
 
-       
-       ServiceClient sf = new ServiceClient();
-       ServiceDivision df = new ServiceDivision();
+    ServiceClient sf = new ServiceClient();
+    ServiceDivision df = new ServiceDivision();
 
     /**
      * Initializes the controller class.
@@ -65,9 +65,9 @@ public class StatistiqueController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
-              label1.setText("Nombre de Client Total :   "+String.valueOf(sf.RecupTotal()));
-            label2.setText("Nombre de Division Total :   "+String.valueOf(df.RecupTotal()));
-            
+            label1.setText("Nombre de Client Total :   " + String.valueOf(sf.RecupTotal()));
+            label2.setText("Nombre de Division Total :   " + String.valueOf(df.RecupTotal()));
+
             buildData();
             buildData2();
             pie.getData().addAll(data);
@@ -75,9 +75,9 @@ public class StatistiqueController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(StatistiqueController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
-     public void generateBarChart() throws SQLException {
+    }
+
+    public void generateBarChart() throws SQLException {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         List<stat> clients = data2;
 
@@ -99,7 +99,7 @@ public class StatistiqueController implements Initializable {
             String label = (String) columnKey;
             XYChart.Data<String, Number> data = new XYChart.Data<>(label, dataset.getValue("Nombre d'achats", (Comparable<?>) columnKey));
             // Set the label for the data
-           data.setNode(new HoveredThresholdNode((int) (double) dataset.getValue("Nombre d'achats", (Comparable<?>) columnKey), label));
+            data.setNode(new HoveredThresholdNode((int) (double) dataset.getValue("Nombre d'achats", (Comparable<?>) columnKey), label));
             series.getData().add(data);
         }
 
@@ -113,73 +113,70 @@ public class StatistiqueController implements Initializable {
         barChart.setLegendSide(Side.RIGHT.RIGHT);
 
     }
-     
-     public void buildData(){
-          java.sql.Connection cnx;
-     cnx = Database.getInstance().getCnx();
-          data = FXCollections.observableArrayList();
-          try{
+
+    public void buildData() {
+        java.sql.Connection cnx;
+        cnx = Database.getInstance().getCnx();
+        data = FXCollections.observableArrayList();
+        try {
             //SQL FOR SELECTING NATIONALITY OF CUSTOMER
-            String SQL =" SELECT COUNT(*), type FROM client u,division r where u.division_id = r.id GROUP BY u.division_id";
+            String SQL = " SELECT COUNT(*), type FROM client u,division r where u.division_id = r.id GROUP BY u.division_id";
 
             ResultSet rs = cnx.createStatement().executeQuery(SQL);
-            while(rs.next()){
+            while (rs.next()) {
                 //adding data on piechart data
-                data.add(new PieChart.Data(rs.getString(2),rs.getInt(1)));
+                data.add(new PieChart.Data(rs.getString(2), rs.getInt(1)));
             }
-          }catch(Exception e){
-              System.out.println("Error on DB connection");
-              return;
-          }
-
-      }
-     
-           public void buildData2(){
-               
-            
-             
-          data2 = FXCollections.observableArrayList();
-    
-       java.sql.Connection cnx;
-     cnx = Database.getInstance().getCnx();
-          String sql = "SELECT COUNT(*), ville FROM client GROUP BY ville ";
-    try {
-       
-        PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
-
-    ResultSet R = st.executeQuery();
-    while (R.next()){
-                     data2.add(new stat(R.getInt(1),R.getString(2)));
+        } catch (Exception e) {
+            System.out.println("Error on DB connection");
+            return;
+        }
 
     }
-    }catch (SQLException ex){
-    ex.getMessage(); 
-    } 
-    }
-     
-     
-     class HoveredThresholdNode extends StackPane {
 
-    HoveredThresholdNode(int value, String label) {
-        setPrefSize(15, 15);
-        final Label valueLabel = new Label(String.valueOf(value));
-        valueLabel.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
-        valueLabel.setStyle("-fx-font-size: 12; -fx-font-weight: bold;");
-        valueLabel.setVisible(false);
-        final Label dataLabel = new Label(label);
-        dataLabel.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
-        dataLabel.setStyle("-fx-font-size: 12; -fx-font-weight: bold;");
-        dataLabel.setVisible(false);
-        setOnMouseEntered(mouseEvent -> {
-            valueLabel.setVisible(true);
-            dataLabel.setVisible(true);
-        });
-        setOnMouseExited(mouseEvent -> {
+    public void buildData2() {
+
+        data2 = FXCollections.observableArrayList();
+
+        java.sql.Connection cnx;
+        cnx = Database.getInstance().getCnx();
+        String sql = "SELECT COUNT(*), ville FROM client GROUP BY ville ";
+        try {
+
+            PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
+
+            ResultSet R = st.executeQuery();
+            while (R.next()) {
+                data2.add(new stat(R.getInt(1), R.getString(2)));
+
+            }
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+
+    class HoveredThresholdNode extends StackPane {
+
+        HoveredThresholdNode(int value, String label) {
+            setPrefSize(15, 15);
+            final Label valueLabel = new Label(String.valueOf(value));
+            valueLabel.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
+            valueLabel.setStyle("-fx-font-size: 12; -fx-font-weight: bold;");
             valueLabel.setVisible(false);
+            final Label dataLabel = new Label(label);
+            dataLabel.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
+            dataLabel.setStyle("-fx-font-size: 12; -fx-font-weight: bold;");
             dataLabel.setVisible(false);
-        });
-        getChildren().setAll(valueLabel, dataLabel);
+            setOnMouseEntered(mouseEvent -> {
+                valueLabel.setVisible(true);
+                dataLabel.setVisible(true);
+            });
+            setOnMouseExited(mouseEvent -> {
+                valueLabel.setVisible(false);
+                dataLabel.setVisible(false);
+            });
+            getChildren().setAll(valueLabel, dataLabel);
+        }
     }
-     }
-    
+
 }
