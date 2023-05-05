@@ -2,43 +2,58 @@
 
 <!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>-->
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="pagination" prefHeight="528.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionrh.gui.ListeEmployeeFXMLController">
     
     <children>
-      <TableView fx:id="tableEmp" layoutX="9.0" layoutY="73.0" prefHeight="367.0" prefWidth="636.0">
+      <TableView fx:id="tableEmp" layoutX="168.0" layoutY="79.0" prefHeight="353.0" prefWidth="468.0">
         <columns>
-          <TableColumn fx:id="nombtn" prefWidth="75.0" text="nom" />
-            <TableColumn fx:id="prenombtn" prefWidth="75.0" text="prenom" />
-            <TableColumn fx:id="emailbtn" prefWidth="92.00001525878906" text="email" />
-            <TableColumn fx:id="phonenumbtn" prefWidth="64.0" text="phoneNum" />
-            <TableColumn fx:id="cinbtn" prefWidth="88.0" text="Cin" />
-            <TableColumn fx:id="formationabtn" prefWidth="75.0" text="FormationA" />
-            <TableColumn fx:id="formationpbtn" prefWidth="75.0" text="FormationP" />
-            <TableColumn fx:id="experiencebtn" prefWidth="75.0" text="Experience" />
+          <TableColumn fx:id="nombtn" prefWidth="42.66668701171875" text="nom" />
+            <TableColumn fx:id="prenombtn" prefWidth="53.33338928222656" text="prenom" />
+            <TableColumn fx:id="emailbtn" prefWidth="41.3333740234375" text="email" />
+            <TableColumn fx:id="phonenumbtn" prefWidth="68.6666259765625" text="phoneNum" />
+            <TableColumn fx:id="cinbtn" prefWidth="35.33331298828125" text="Cin" />
+            <TableColumn fx:id="formationabtn" prefWidth="79.33331298828125" text="FormationA" />
+            <TableColumn fx:id="formationpbtn" prefWidth="75.33331298828125" text="FormationP" />
+            <TableColumn fx:id="experiencebtn" prefWidth="227.99996948242188" text="Experience" />
         </columns>
       </TableView>
-      
-      <Button fx:id="ajouterbtn" layoutX="298.0" layoutY="17.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
-      <Button fx:id="Modiferbtn" layoutX="403.0" layoutY="17.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
-      <Button fx:id="Supprimerbtn" layoutX="526.0" layoutY="17.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-     <Pane layoutY="59.0" prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-       <Text layoutX="9.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employees" wrappingWidth="165.13673400878906">
+       <Text fill="#681677" layoutX="176.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employees" wrappingWidth="165.80335998535156">
          <font>
-            <Font name="Bauhaus 93" size="64.0" />
+            <Font name="Algerian" size="29.0" />
          </font>
       </Text>
-      <Button fx:id="statbtn" layoutX="168.0" layoutY="17.0" mnemonicParsing="false" onAction="#Statique" text="Statistique" />
-      <Pagination fx:id="pag" layoutX="20.0" layoutY="88.0" prefHeight="431.0" prefWidth="618.0" />
+      <Pagination fx:id="pag" layoutX="168.0" layoutY="58.0" prefHeight="445.0" prefWidth="468.0" />
+      <AnchorPane layoutX="-42.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane layoutX="-12.0" layoutY="-3.0" prefHeight="535.0" prefWidth="176.0" style="-fx-background-color: #DF73FF;">
+         <children>
+            <ImageView fitHeight="113.0" fitWidth="180.0" layoutX="-2.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/332842809_856558328771419_1402304466079459982_n.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="51.0" layoutY="115.0" text="My Company">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            
+            <Button fx:id="ajouterbtn" layoutX="51.0" layoutY="282.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: #008000;" text="Ajouter" />
+            <Button fx:id="Modiferbtn" layoutX="50.0" layoutY="339.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: #6600FF;" text="Modifier" />
+            <Button fx:id="Supprimerbtn" layoutX="50.0" layoutY="397.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #ED0000;" text="Supprimer" />
+            <Button fx:id="statbtn" layoutX="50.0" layoutY="456.0" mnemonicParsing="false" onAction="#Statique" style="-fx-background-color: #6600FF;" text="Statistique" textFill="#040000" />
+         </children>
+      </AnchorPane>
      <!-- <TextField fx:id="cherch" layoutX="430.0" layoutY="19.0" onAction="#Cherchemp" />-->
      <!-- <HBox layoutX="26.0" layoutY="62.0" prefHeight="82.0" prefWidth="200.0">
          <children>
@@ -57,7 +72,4 @@
       </HBox>
       <FontAwesomeIcon fill="#d32f2f" glyphName="CLOSE" layoutX="540.0" layoutY="37.0" size="20" />-->
    </children>
-   <stylesheets>
-      <URL value="@listeEmploye.css" />
-   </stylesheets>
 </AnchorPane>
