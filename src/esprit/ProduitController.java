@@ -8,7 +8,16 @@ package esprit;
 import Database.Database;
 import Entity.Category;
 import Entity.Produit;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,6 +25,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -270,7 +281,7 @@ public class ProduitController implements Initializable {
              Integer  i = comm.getValue();
                System.out.println(i);
             st.setInt(1, i);
-            st.setString(2, name.getText());
+            st.setString(2, n.getText());
             st.setString(3, d.getText());
               st.setInt(4,prix1);
             st.setInt(5, prix2);
@@ -326,6 +337,8 @@ public class ProduitController implements Initializable {
         
     }
     public void notif1(String title, String text) {
+        
+        
         Image img = new Image("/esprit/logo1.png");
         Notifications notificationBuilder = Notifications.create()
                 .title(title)
@@ -369,7 +382,6 @@ public class ProduitController implements Initializable {
     tab.setItems(srt);
     }
     
-       @FXML
     private void print(ActionEvent event) {
         
         
@@ -501,4 +513,66 @@ public class ProduitController implements Initializable {
 //
 //        this.user = user;}
 
-}
+    @FXML
+    void btnGenPDF(ActionEvent event) throws DocumentException, FileNotFoundException, IOException {
+ServiceProduit sp = new ServiceProduit();
+
+  long millis = System.currentTimeMillis();
+        java.sql.Date DateRapport = new java.sql.Date(millis);
+
+        String DateLyoum = new SimpleDateFormat("yyyyMMddHHmmss", Locale.ENGLISH).format(DateRapport);//yyyyMMddHHmmss
+        System.out.println("Date d'aujourdhui : " );
+
+        com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+        
+        
+
+        try {
+              com.itextpdf.text.Image img = com.itextpdf.text.Image.getInstance("C:\\Users\\wassi\\OneDrive\\Pictures\\332842809_856558328771419_1402304466079459982_n.png");
+               img.scaleAbsoluteWidth(200);
+               img.scaleAbsoluteHeight(50);
+               img.setAlignment(com.itextpdf.text.Image.ALIGN_CENTER);
+              
+            PdfWriter.getInstance(document, new FileOutputStream(String.valueOf(DateLyoum + ".pdf")));//yyyy-MM-dd
+            document.open();
+            Paragraph ph1 = new Paragraph("les produits :" );
+            Paragraph ph2 = new Paragraph(".");
+            PdfPTable table = new PdfPTable(3);
+
+            //On créer l'objet cellule.
+            PdfPCell cell;
+
+            //contenu du tableau.
+            table.addCell("nom");
+            table.addCell("description");
+            table.addCell("prix de vente");
+            Produit r = new Produit();
+            sp.read_all().forEach(e-> {
+                //  table.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(String.valueOf(e.getName()));
+                table.addCell(String.valueOf(e.getDescription()));
+                table.addCell(String.valueOf(e.getSellprice()));
+                
+            }
+            );
+            document.add(img);
+            document.add(ph1);
+            document.add(ph2);
+            document.add(table);
+            //  document.addAuthor("Bike");
+            // AlertDialog.showNotification("Creation PDF ", "Votre fichier PDF a ete cree avec success", AlertDialog.image_checked);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        document.close();
+
+        ///Open FilePdf
+        File file = new File(DateLyoum + ".pdf");
+        Desktop desktop = Desktop.getDesktop();
+        if (file.exists()) //checks file exists or not  
+        {
+            desktop.open(file); //opens the specified file   
+        }
+
+    
+    }}

@@ -40,7 +40,7 @@
                                     <ComboBox fx:id="comm" layoutX="13.0" layoutY="98.0" prefWidth="150.0" promptText="ID Category" />
                                     <Button layoutX="18.0" layoutY="405.0" mnemonicParsing="false" onAction="#Add" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #0ACA10;" stylesheets="@tournoisfxml.css" text="Ajouter" textFill="#101010" />
                                     <Button layoutX="163.0" layoutY="405.0" mnemonicParsing="false" onAction="#Supp" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #C81705;" text="Supprimer" />
-                                    <Button layoutX="18.0" layoutY="449.0" mnemonicParsing="false" onAction="#print" prefHeight="26.0" prefWidth="120.0" stylesheets="@tournoisfxml.css" text="Imprimer" />
+                                    <Button layoutX="18.0" layoutY="449.0" mnemonicParsing="false" onAction="#btnGenPDF" prefHeight="26.0" prefWidth="120.0" stylesheets="@tournoisfxml.css" text="Imprimer" />
                                  </children>
                               </AnchorPane>
                               <Separator layoutX="329.0" layoutY="19.0" orientation="VERTICAL" prefHeight="561.0" prefWidth="15.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0" />
