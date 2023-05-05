@@ -1,0 +1,53 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.white-form {
+   -fx-background-color:#fff;
+   -fx-background-radius: 8px;
+}
+
+.border{
+    -fx-border-color: linear-gradient(to bottom right, #f0cb29, #b58412);
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.btn{
+   -fx-background-color: linear-gradient(to bottom right, #FEAA01, #FEBE3F);
+   -fx-text-fill:#0C1048;
+   -fx-font-size:12px;
+   -fx-cursor: hand;
+    
+}
+
+.btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #FEC758, #f0cb29);
+}
+
+.table-view{
+    -fx-padding: 0px;
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to bottom right, #f0cb29, #b58412);
+    -fx-border-radius:8px;
+    -fx-border-width: 2px;
+    
+}
+.table-view .column-header-background{
+     -fx-background-color: linear-gradient(to bottom right, #FEAA01, #FEBE3F);
+     -fx-background-radius: 8px 8px 0 0;
+     -fx-background-inset: 0 0 0 0;
+    
+}
+
+.table-view .column-header, .filter{
+    
+    -fx-background-color: transparent;
+    -fx-size: 50px;
+    
+}
+.table-view .column-header .label{
+    -fx-text-fill: #fff;
+    -fx-font-family: arial;
+    
+}
