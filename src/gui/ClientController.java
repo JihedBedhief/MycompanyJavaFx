@@ -278,7 +278,7 @@ table2();
            Properties props=new Properties();
         props.put("mail.smtp.host","smtp.gmail.com");
         props.put("mail.smtp.port",465);
-        props.put("mail.smtp.user","benbrahimayoubben@gmail.com");
+        props.put("mail.smtp.user","pidevmycompany2023@gmail.com");
         props.put("mail.smtp.auth",true);
         props.put("mail.smtp.starttls.enable",true);
         props.put("mail.smtp.debug",true);
@@ -292,7 +292,7 @@ table2();
                 MimeMessage message = new MimeMessage(session);
                 message.setText("Your division have been updated" );
                 message.setSubject("Division updated");
-                message.setFrom(new InternetAddress("benbrahimayoubben@gmail.com"));
+                message.setFrom(new InternetAddress("pidevmycompany2023@gmail.com"));
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(email.getText().trim()));
                 message.saveChanges();
                 try
@@ -331,13 +331,13 @@ public void vip(ActionEvent event) {
             if (!list2.isEmpty()) {
                 tab.setItems(list2);
             } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucune réclamation bien envoyée.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucun client.");
                 alert.setHeaderText(null);
                 alert.showAndWait();
                 vip.setSelected(false);
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous n'avez aucune réclamation avec cette résolution.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous n'avez aucun client ");
             alert.setHeaderText(null);
             alert.showAndWait();
             normal.setSelected(false);
@@ -363,13 +363,13 @@ public void normal(javafx.event.ActionEvent event) throws SQLException {
             if (!list2.isEmpty()) {
                 tab.setItems(list2);
             } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucune reclamation resolu.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucun client.");
                 alert.setHeaderText(null);
                 alert.showAndWait();
                 normal.setSelected(false);
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous n'avez aucune reclamation avec cette resolution");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous n'avez aucun client");
             alert.setHeaderText(null);
             alert.showAndWait();
             vip.setSelected(false);
@@ -438,7 +438,7 @@ table2();
                     stage.close();
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Statistique.fxml")));       
                     stage.setScene(scene);
-                    stage.setTitle("Login");
+                    stage.setTitle("statistique");
                     
                     stage.show(); 
     }
