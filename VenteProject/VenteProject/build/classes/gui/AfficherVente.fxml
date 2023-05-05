@@ -4,30 +4,53 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherVenteController">
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="968.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherVenteController">
    <children>
-      <Label layoutX="279.0" layoutY="56.0" text="Afficher Vente">
+      <Label layoutX="222.0" layoutY="29.0" text="Afficher Vente" textFill="#600491">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Algerian" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="16.0" layoutY="114.0" prefHeight="200.0" prefWidth="661.0">
+      <TableView fx:id="table" layoutX="222.0" layoutY="99.0" prefHeight="331.0" prefWidth="707.0">
         <columns>
-          <TableColumn fx:id="produit" prefWidth="75.0" text="Produit" />
-          <TableColumn fx:id="client" prefWidth="75.0" text="Client" />
-            <TableColumn fx:id="quanatite" prefWidth="110.0" text="Quantite" />
-            <TableColumn fx:id="prix" prefWidth="63.0" text="Prix" />
-            <TableColumn fx:id="taxe" prefWidth="76.0" text="Taxe" />
-            <TableColumn fx:id="prixtotal" prefWidth="112.0" text="Prix Totale" />
-            <TableColumn fx:id="date" prefWidth="149.0" text="date_vente" />
+          <TableColumn fx:id="produit" prefWidth="75.99998474121094" text="Produit" />
+          <TableColumn fx:id="client" prefWidth="64.0" text="Client" />
+            <TableColumn fx:id="quanatite" prefWidth="92.6666259765625" text="Quantite" />
+            <TableColumn fx:id="prix" prefWidth="76.66665649414062" text="Prix" />
+            <TableColumn fx:id="taxe" prefWidth="93.33331298828125" text="Taxe" />
+            <TableColumn fx:id="prixtotal" prefWidth="141.33331298828125" text="Prix Totale" />
+            <TableColumn fx:id="date" prefWidth="164.666748046875" text="date_vente" />
         </columns>
       </TableView>
-      <Button layoutX="193.0" layoutY="339.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter " />
-      <Button layoutX="300.0" layoutY="339.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-      <Button layoutX="417.0" layoutY="339.0" mnemonicParsing="false" onAction="#Modifer" text="Modifier" />
-      <Button layoutX="565.0" layoutY="59.0" mnemonicParsing="false" onAction="#Pdf" text="Pdf" />
+      <Button layoutX="710.0" layoutY="460.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #008000;" text="Ajouter ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="789.0" layoutY="460.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #FF0000;" text="Supprimer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="886.0" layoutY="460.0" mnemonicParsing="false" onAction="#Modifer" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #0000FF;" text="Modifier">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="865.0" layoutY="506.0" mnemonicParsing="false" onAction="#Pdf" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #00FFFF;" text="Pdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <AnchorPane layoutY="-3.0" prefHeight="549.0" prefWidth="191.0" style="-fx-background-color: #df73ff;">
+         <children>
+            <ImageView fitHeight="96.0" fitWidth="198.0" layoutX="6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/324943107_727844712198640_5952788068570103838_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

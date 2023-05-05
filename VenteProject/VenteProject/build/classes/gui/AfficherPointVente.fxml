@@ -5,29 +5,54 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherPointVenteController">
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherPointVenteController">
    <children>
-      <Label layoutX="204.0" layoutY="49.0" text="Afficher Point Vente">
+      <Label layoutX="223.0" layoutY="19.0" prefHeight="51.0" prefWidth="274.0" text="Afficher Point Vente" textFill="#7c06b7">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Algerian" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="16.0" layoutY="114.0" prefHeight="200.0" prefWidth="573.0">
+      <TableView fx:id="table" layoutX="287.0" layoutY="123.0" prefHeight="311.0" prefWidth="573.0">
         <columns>
-          <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
-          <TableColumn fx:id="region" prefWidth="75.0" text="Region" />
+          <TableColumn fx:id="nom" prefWidth="69.33331108093262" text="Nom" />
+          <TableColumn fx:id="region" prefWidth="81.33332061767578" text="Region" />
             <TableColumn fx:id="email" prefWidth="110.0" text="Email" />
             <TableColumn fx:id="ville" prefWidth="93.0" text="Ville" />
             <TableColumn fx:id="code" prefWidth="94.0" text="Code Postale" />
             <TableColumn fx:id="tel" prefWidth="124.0" text="Téléphone" />
         </columns>
       </TableView>
-      <Button layoutX="193.0" layoutY="339.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter " />
-      <Button layoutX="300.0" layoutY="339.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-      <Button layoutX="417.0" layoutY="339.0" mnemonicParsing="false" onAction="#Modifer" text="Modifier" />
-      <TextField fx:id="rechercher" layoutX="16.0" layoutY="52.0" onAction="#rechercher" />
+      <Button layoutX="596.0" layoutY="474.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #008000;" text="Ajouter ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="693.0" layoutY="474.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #FF0000;" text="Supprimer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="779.0" layoutY="474.0" mnemonicParsing="false" onAction="#Modifer" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #0000FF;" text="Modifier">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextField fx:id="rechercher" layoutX="715.0" layoutY="67.0" onAction="#rechercher" />
+      <Label layoutX="622.0" layoutY="71.0" prefHeight="15.0" prefWidth="71.0" text="Recherche" textFill="#099dd7">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="-3.0" prefHeight="556.0" prefWidth="192.0" style="-fx-background-color: #df73ff;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/324943107_727844712198640_5952788068570103838_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
